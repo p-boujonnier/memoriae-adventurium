@@ -11,35 +11,36 @@ public class User {
     public User() {
     }
 
-    public User(UUID id, String pseudo, String password, String email) {
-        this.id = id;
-        this.pseudo = pseudo;
-        this.password = password;
-        this.email = email;
+    public User(UUID id, String pseudo, String email, String password) {
+        this.setId(id);
+        this.setPseudo(pseudo);
+        this.setEmail(email);
+        this.setPassword(password);
     }
 
+    public void setId(UUID id) {}
     public UUID getId() {
         return id;
     }
 
-    public String getPseudo() {
-        return pseudo;
-    }
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
-
-    public String getEmail() {
-        return email;
+    public String getPseudo() {
+        return pseudo;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
+
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getPassword() {
+        return password;
     }
 }
