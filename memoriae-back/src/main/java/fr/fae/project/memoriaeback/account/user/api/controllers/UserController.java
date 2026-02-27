@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     private List<User> users = new ArrayList<>(List.of(
             new User(UUID.randomUUID(), "Alice", "alice@memoriae.com", "password"),
