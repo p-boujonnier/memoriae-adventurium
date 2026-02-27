@@ -1,0 +1,23 @@
+services:
+
+  memoriae-back:
+    build:
+      context: ./memoriae-back
+    ports:
+      - "8080:8080"
+    networks:
+      - memoriae-network
+
+  memoriae-front:
+    build:
+      context: ./memoriae-front
+    ports:
+      - "4200:4200"
+    depends_on:
+      - memoriae-back
+    networks:
+      - memoriae-network
+
+networks:
+  memoriae-network:
+    driver: bridge

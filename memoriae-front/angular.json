@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "untitled": {
+    "memoriae-front": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -16,6 +16,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/memoriae-front",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -56,10 +57,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "untitled:build:production"
+              "buildTarget": "memoriae-front:build:production"
             },
             "development": {
-              "buildTarget": "untitled:build:development"
+              "buildTarget": "memoriae-front:build:development"
             }
           },
           "defaultConfiguration": "development"

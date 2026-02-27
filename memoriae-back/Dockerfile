@@ -1,5 +1,5 @@
 # Étape 1 - Build
-FROM gradle:8-eclipse-temurin-25 AS build
+FROM gradle:jdk25 AS build
 WORKDIR /app
 COPY build.gradle .
 COPY settings.gradle .
