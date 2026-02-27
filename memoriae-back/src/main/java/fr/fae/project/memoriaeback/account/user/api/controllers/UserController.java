@@ -1,6 +1,7 @@
 package fr.fae.project.memoriaeback.account.user.api.controllers;
 
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
