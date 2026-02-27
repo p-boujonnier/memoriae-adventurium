@@ -18,7 +18,9 @@ public class User {
         this.setPassword(password);
     }
 
-    public void setId(UUID id) {}
+    public void setId(UUID id) {
+        this.id = id;
+    }
     public UUID getId() {
         return id;
     }

@@ -1,0 +1,6 @@
+<h2>Liste des utilisateurs</h2>
+<ul>
+  @for (user of users; track user.id) {
+    <li>{{ user.pseudo }} - {{ user.email }}</li>
+  }
+</ul>
