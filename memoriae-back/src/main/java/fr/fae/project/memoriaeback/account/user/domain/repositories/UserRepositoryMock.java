@@ -1,12 +1,14 @@
 package fr.fae.project.memoriaeback.account.user.domain.repositories;
 
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 public class UserRepositoryMock implements UserRepository{
 
     private List<User> users = new ArrayList<>(List.of(
