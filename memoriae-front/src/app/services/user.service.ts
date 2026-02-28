@@ -11,7 +11,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  findAll() : Observable<User[]> {
+  findAll() {
+    console.log('CALL findAll ->', this.apiUrl);
     return this.http.get<User[]>(this.apiUrl);
   }
 }

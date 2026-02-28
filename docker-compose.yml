@@ -1,20 +1,21 @@
-services:
+version: "3.9"
 
-  memoriae-back:
-    build:
-      context: ./memoriae-back
+services:
+  backend:
+    build: ./memoriae-back
+    container_name: memoriae-back
     ports:
       - "8080:8080"
     networks:
       - memoriae-network
 
-  memoriae-front:
-    build:
-      context: ./memoriae-front
+  frontend:
+    build: ./memoriae-front
+    container_name: memoriae-front
     ports:
-      - "4200:4200"
+      - "4200:80"
     depends_on:
-      - memoriae-back
+      - backend
     networks:
       - memoriae-network
 
