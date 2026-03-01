@@ -2,10 +2,8 @@ package fr.fae.project.memoriaeback.account.user.api.controllers;
 
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import fr.fae.project.memoriaeback.account.user.domain.repositories.UserRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +24,13 @@ public class UserController {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> findById(@PathVariable UUID id) {
+        return userRepository
+                .findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
