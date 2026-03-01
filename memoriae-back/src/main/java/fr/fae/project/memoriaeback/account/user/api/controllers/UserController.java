@@ -20,11 +20,20 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+    /**
+     * GET /api/users
+     * @return List of users
+     */
     @GetMapping
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
+    /**
+     * GET /api/users/{id}
+     * @param id User ID
+     * @return User with specified ID
+     */
     @GetMapping("/{id}")
     public ResponseEntity<User> findById(@PathVariable UUID id) {
         return userRepository
@@ -33,4 +42,16 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    /**
+     * POST /api/users
+     * @param user User to create
+     * @return Created user
+     */
+    @PostMapping
+    public ResponseEntity<User> save(@RequestBody User user) {
+        User savedUser = userRepository.save(user);
+        return ResponseEntity.status(201).body(savedUser);
+    }
 }
+
+
