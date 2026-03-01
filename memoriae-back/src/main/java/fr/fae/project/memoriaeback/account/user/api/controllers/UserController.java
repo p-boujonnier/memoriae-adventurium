@@ -20,6 +20,21 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
+
+    /**
+     * GET /api/users/{id}
+     * @param uuid User ID
+     * @return User with specified ID
+     */
+    @GetMapping("/{uuid}")
+    public ResponseEntity<User> findById(
+            @PathVariable UUID uuid) {
+        return userRepository
+                .findById(uuid)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     /**
      * GET /api/users
      * @return List of users
@@ -30,52 +45,43 @@ public class UserController {
     }
 
     /**
-     * GET /api/users/{id}
-     * @param id User ID
-     * @return User with specified ID
-     */
-    @GetMapping("/{id}")
-    public ResponseEntity<User> findById(@PathVariable UUID id) {
-        return userRepository
-                .findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    /**
      * POST /api/users
      * @param user User to create
      * @return Created user
      */
     @PostMapping
-    public ResponseEntity<User> save(@RequestBody User user) {
+    public ResponseEntity<User> save(
+            @RequestBody User user) {
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(201).body(savedUser);
     }
 
     /**
      * PUT /api/users/{id}
-     * @param id User ID
+     * @param uuid User ID
      * @param user Updated user
      * @return Updated user
      */
-    @PutMapping("/{id}")
-    public ResponseEntity<User> update(@PathVariable UUID id, @RequestBody User user) {
-        return userRepository.update(id, user)
+    @PutMapping("/{uuid}")
+    public ResponseEntity<User> update(
+            @PathVariable UUID uuid,
+            @RequestBody User user) {
+        return userRepository.update(uuid, user)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     /**
      * DELETE /api/users/{id}
-     * @param id User ID
+     * @param uuid User ID
      * @return Deleted user
      */
-    @DeleteMapping("/{id}")
-    public ResponseEntity<User> delete(@PathVariable UUID id) {
-        return userRepository.findById(id)
+    @DeleteMapping("/{uuid}")
+    public ResponseEntity<User> delete(
+            @PathVariable UUID uuid) {
+        return userRepository.findById(uuid)
                 .map(user -> {
-                    userRepository.delete(id);
+                    userRepository.delete(uuid);
                     return ResponseEntity.ok(user);
                 })
                 .orElse(ResponseEntity.notFound().build());
