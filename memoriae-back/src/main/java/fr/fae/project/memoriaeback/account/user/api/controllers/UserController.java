@@ -52,6 +52,19 @@ public class UserController {
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(201).body(savedUser);
     }
+
+    /**
+     * PUT /api/users/{id}
+     * @param id User ID
+     * @param user Updated user
+     * @return Updated user
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<User> update(@PathVariable UUID id, @RequestBody User user) {
+        return userRepository.update(id, user)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
 
 

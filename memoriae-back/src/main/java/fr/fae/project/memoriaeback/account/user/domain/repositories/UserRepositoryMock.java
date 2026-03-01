@@ -26,7 +26,7 @@ public class UserRepositoryMock implements UserRepository{
     public Optional<User> findById(UUID id) {
         return users
                 .stream()
-                .filter(user -> user.getId().equals(id))
+                .filter(u -> u.getId().equals(id))
                 .findFirst();
     }
 
@@ -37,6 +37,20 @@ public class UserRepositoryMock implements UserRepository{
         }
         users.add(user);
         return user;
+    }
+
+    @Override
+    public Optional<User> update(UUID id, User user) {
+        return users.stream()
+                .filter(u -> u.getId().equals(id))
+                .findFirst()
+                .map(u -> {
+                    u.setId(id);
+                    u.setPseudo(user.getPseudo());
+                    u.setEmail(user.getEmail());
+                    u.setPassword(user.getPassword());
+                    return u;
+                });
     }
 
     @Override
