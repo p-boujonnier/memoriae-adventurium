@@ -65,6 +65,21 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    /**
+     * DELETE /api/users/{id}
+     * @param id User ID
+     * @return Deleted user
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> delete(@PathVariable UUID id) {
+        return userRepository.findById(id)
+                .map(user -> {
+                    userRepository.delete(id);
+                    return ResponseEntity.ok(user);
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
 
 
