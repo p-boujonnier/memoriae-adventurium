@@ -2,10 +2,12 @@ package fr.fae.project.memoriaeback.account.user.application.services;
 
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import fr.fae.project.memoriaeback.account.user.domain.repositories.UserRepositoryInter;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class UserServiceImpl implements UserServiceInter{
 
     private final UserRepositoryInter userRepository;
@@ -15,9 +17,9 @@ public class UserServiceImpl implements UserServiceInter{
     }
 
     @Override
-    public User findById(String id) {
+    public User findById(UUID id) {
         return userRepository
-                .findById(UUID.fromString(id))
+                .findById(id)
                 .orElse(null);
     }
 
@@ -32,14 +34,14 @@ public class UserServiceImpl implements UserServiceInter{
     }
 
     @Override
-    public User update(String id, User user) {
+    public User update(UUID id, User user) {
         return userRepository
-                .update(UUID.fromString(id), user)
+                .update(id, user)
                 .orElse(null);
     }
 
     @Override
-    public void delete(String id) {
-        userRepository.delete(UUID.fromString(id));
+    public void delete(UUID id) {
+        userRepository.delete(id);
     }
 }

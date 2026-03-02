@@ -3,16 +3,17 @@ package fr.fae.project.memoriaeback.account.user.application.services;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserServiceInter {
 
-    public User findById(String id);
+    User findById(UUID id);
 
-    public List<User> findAll();
+    List<User> findAll();
 
-    public User save(User user);
+    User save(User user);
 
-    public User update(String id, User user);
+    User update(UUID id, User user);
 
-    public void delete(String id);
+    void delete(UUID id);
 }

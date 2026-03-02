@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public class UserRepositoryMock implements UserRepositoryInter {
 
-    private List<User> users = new ArrayList<>(List.of(
+    private final List<User> users = new ArrayList<>(List.of(
             new User(UUID.randomUUID(), "Alice", "alice@memoriae.com", "password"),
             new User(UUID.randomUUID(), "Bob", "bob@memoriae.com", "password"),
             new User(UUID.randomUUID(), "Charlie", "charlie@memoriae.com", "password")

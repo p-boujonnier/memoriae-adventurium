@@ -1,7 +1,7 @@
 package fr.fae.project.memoriaeback.account.user.api.controllers;
 
+import fr.fae.project.memoriaeback.account.user.application.services.UserServiceInter;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
-import fr.fae.project.memoriaeback.account.user.domain.repositories.UserRepositoryInter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,12 +13,11 @@ import java.util.UUID;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
-    private final UserRepositoryInter userRepository;
+    private final UserServiceInter userServiceInter;
 
-    public UserController(UserRepositoryInter userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserServiceInter userServiceInter) {
+        this.userServiceInter = userServiceInter;
     }
-
 
     /**
      * GET /api/users/{id}
@@ -26,12 +25,12 @@ public class UserController {
      * @return User with specified ID
      */
     @GetMapping("/{uuid}")
-    public ResponseEntity<User> findById(
-            @PathVariable UUID uuid) {
-        return userRepository
-                .findById(uuid)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<User> findById(@PathVariable UUID uuid) {
+        User user = userServiceInter.findById(uuid);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 
     /**
@@ -40,7 +39,7 @@ public class UserController {
      */
     @GetMapping
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userServiceInter.findAll();
     }
 
     /**
@@ -51,7 +50,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> save(
             @RequestBody User user) {
-        User savedUser = userRepository.save(user);
+        User savedUser = userServiceInter.save(user);
         return ResponseEntity.status(201).body(savedUser);
     }
 
@@ -65,9 +64,11 @@ public class UserController {
     public ResponseEntity<User> update(
             @PathVariable UUID uuid,
             @RequestBody User user) {
-        return userRepository.update(uuid, user)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        User updatedUser = userServiceInter.update(uuid, user);
+        if (updatedUser == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 
     /**
@@ -78,12 +79,11 @@ public class UserController {
     @DeleteMapping("/{uuid}")
     public ResponseEntity<User> delete(
             @PathVariable UUID uuid) {
-        return userRepository.findById(uuid)
-                .map(user -> {
-                    userRepository.delete(uuid);
-                    return ResponseEntity.ok(user);
-                })
-                .orElse(ResponseEntity.notFound().build());
+        if (userServiceInter.findById(uuid) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        userServiceInter.delete(uuid);
+        return ResponseEntity.noContent().build();
     }
 }
 
