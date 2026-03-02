@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public class UserRepositoryMock implements UserRepository{
+public class UserRepositoryMock implements UserRepositoryInter {
 
     private List<User> users = new ArrayList<>(List.of(
             new User(UUID.randomUUID(), "Alice", "alice@memoriae.com", "password"),
