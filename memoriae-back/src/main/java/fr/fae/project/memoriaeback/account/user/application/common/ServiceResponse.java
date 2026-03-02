@@ -11,9 +11,9 @@ public class ServiceResponse<T> {
     public ServiceResponse() {
     }
     public ServiceResponse(String code, String message, T data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
+        this.setCode(code);
+        this.setMessage(message);
+        this.setData(data);
     }
 
     // Getters & Setters

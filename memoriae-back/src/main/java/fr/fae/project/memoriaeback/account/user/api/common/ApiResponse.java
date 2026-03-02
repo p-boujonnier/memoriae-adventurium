@@ -10,8 +10,8 @@ public class ApiResponse<T> {
     public ApiResponse() {
     }
     public ApiResponse(String message, T data) {
-        this.message = message;
-        this.data = data;
+        this.setMessage(message);
+        this.setData(data);
     }
 
     // Getters & Setters

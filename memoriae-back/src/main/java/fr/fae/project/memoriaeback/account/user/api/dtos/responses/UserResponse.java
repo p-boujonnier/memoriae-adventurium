@@ -13,9 +13,9 @@ public class UserResponse {
     public UserResponse() {
     }
     public UserResponse(UUID id, String pseudo, String email) {
-        this.id = id;
-        this.pseudo = pseudo;
-        this.email = email;
+        this.setId(id);
+        this.setPseudo(pseudo);
+        this.setEmail(email);
     }
 
     // Getters & Setters
