@@ -31,12 +31,23 @@ public class UserRepositoryMock implements UserRepositoryInter {
     }
 
     @Override
-    public void save(User user) {
+    public User save(User user) {
+        if (user.getId() != null && existsById(user.getId())) {
+            users.replaceAll(u -> u.getId().equals(user.getId()) ? user : u);
+            return user;
+        }
+        user.setId(UUID.randomUUID());
         users.add(user);
+        return user;
     }
 
     @Override
     public void delete(UUID id) {
         users.removeIf(user -> user.getId().equals(id));
+    }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return users.stream().anyMatch(user -> user.getId().equals(id));
     }
 }
