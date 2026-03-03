@@ -14,5 +14,5 @@ public interface UserServiceInter {
 
     ServiceResponse<User> save(User user);
 
-    ServiceResponse<Object> delete(UUID id);
+    ServiceResponse<Void> delete(UUID id);
 }

@@ -2,7 +2,7 @@ package fr.fae.project.memoriaeback.account.user.api.dtos.responses;
 
 import java.util.UUID;
 
-public class UserResponse {
+public class UserPublicResponse {
 
     // Attributes
     private UUID id;
@@ -10,9 +10,9 @@ public class UserResponse {
     private String email;
 
     // Constructors
-    public UserResponse() {
+    public UserPublicResponse() {
     }
-    public UserResponse(UUID id, String pseudo, String email) {
+    public UserPublicResponse(UUID id, String pseudo, String email) {
         this.setId(id);
         this.setPseudo(pseudo);
         this.setEmail(email);

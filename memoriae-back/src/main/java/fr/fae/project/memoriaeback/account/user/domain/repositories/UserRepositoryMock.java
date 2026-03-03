@@ -42,7 +42,7 @@ public class UserRepositoryMock implements UserRepositoryInter {
     }
 
     @Override
-    public void delete(UUID id) {
+    public void deleteById(UUID id) {
         users.removeIf(user -> user.getId().equals(id));
     }
 

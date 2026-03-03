@@ -14,7 +14,7 @@ public interface UserRepositoryInter {
 
     User save(User user);
 
-    void delete(UUID id);
+    void deleteById(UUID id);
 
     boolean existsById(UUID id);
 }

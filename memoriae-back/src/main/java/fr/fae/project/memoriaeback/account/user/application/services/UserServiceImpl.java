@@ -41,12 +41,12 @@ public class UserServiceImpl implements UserServiceInter{
     }
 
     @Override
-    public ServiceResponse<Object> delete(UUID id) {
+    public ServiceResponse<Void> delete(UUID id) {
         return userRepository.findById(id)
-                .map(user ->{
-                    userRepository.delete(id);
-                    return new ServiceResponse<>("2003","User deleted successfully",null);
+                .map(_ -> {
+                    userRepository.deleteById(id);
+                    return new ServiceResponse<Void>("2003", "User deleted successfully", null);
                 })
-                .orElse(new ServiceResponse<>("2100","User not found",null));
+                .orElse(new ServiceResponse<>("2100", "User not found", null));
     }
 }

@@ -1,5 +1,7 @@
 package fr.fae.project.memoriaeback.account.user.application.common;
 
+import java.util.function.Function;
+
 public class ServiceResponse<T> {
 
     // Attributes
@@ -36,5 +38,13 @@ public class ServiceResponse<T> {
     }
     public void setData(T data) {
         this.data = data;
+    }
+
+    public <R> ServiceResponse<R> map(Function<T, R> mapper) {
+        ServiceResponse<R> mapped = new ServiceResponse<>();
+        mapped.setCode(this.code);
+        mapped.setMessage(this.message);
+        mapped.setData(mapper.apply(this.data));
+        return mapped;
     }
 }

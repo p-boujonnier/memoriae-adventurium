@@ -47,7 +47,7 @@
 | 2001 | User retrieved successfully | The `GET /users/{id}` call correctly returns the user's profile                            |
 | 2002 | User updated successfully   | The user modifies their username or email and the update is persisted                      |
 | 2003 | User deleted successfully   | The user requests account deletion, they are removed from the database                     |
-| 2100 | User not found              | A `GET /users/999` is made but no user with that id exists                                 |
+| 2100 | User not found              | A `GET /users/{id}` is made but no user with that id exists                                |
 | 2101 | Email already in use        | At registration, the provided email is already associated with an existing account         |
 | 2102 | Username already taken      | At registration or update, the chosen username is already taken by another user            |
 | 2103 | Deletion not possible       | Account deletion is blocked because it still has linked characters or notes                |
