@@ -1,0 +1,27 @@
+<h2>{{ isEditMode ? 'Modifier' : 'Créer' }} un utilisateur</h2>
+
+<div>
+  <label for="pseudo">Pseudo :</label>
+  <input type="text" id="pseudo" [(ngModel)]="dto.pseudo" name="pseudo" required>
+</div>
+
+<div>
+  <label for="email">Email :</label>
+  <input type="email" id="email" [(ngModel)]="dto.email" name="email" required>
+</div>
+
+@if (isEditMode) {
+  <div>
+    <label for="password">Mot de passe :</label>
+    <input type="password" id="password" [(ngModel)]="dto.password" name="password" required>
+  </div>
+}
+
+<button (click)="submit()">
+  {{ isEditMode ? 'Modifier' : 'Créer' }}
+</button>
+
+<button (click)="router.navigate(['/users'])">
+  Annuler
+</button>
+
