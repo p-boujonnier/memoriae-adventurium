@@ -12,9 +12,7 @@ public interface UserRepositoryInter {
 
     List<User> findAll();
 
-    User save(User user);
-
-    Optional<User> update(UUID id, User user);
+    void save(User user);
 
     void delete(UUID id);
 }

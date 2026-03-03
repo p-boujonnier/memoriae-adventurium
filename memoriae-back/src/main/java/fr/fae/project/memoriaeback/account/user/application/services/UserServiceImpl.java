@@ -30,14 +30,11 @@ public class UserServiceImpl implements UserServiceInter{
 
     @Override
     public User save(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User update(UUID id, User user) {
-        return userRepository
-                .update(id, user)
-                .orElse(null);
+        if (user.getId() == null){
+            user.setId(UUID.randomUUID());
+        }
+        userRepository.save(user);
+        return user;
     }
 
     @Override

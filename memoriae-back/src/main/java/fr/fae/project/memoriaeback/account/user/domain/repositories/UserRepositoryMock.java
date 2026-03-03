@@ -31,26 +31,8 @@ public class UserRepositoryMock implements UserRepositoryInter {
     }
 
     @Override
-    public User save(User user) {
-        if (user.getId() == null){
-            user.setId(UUID.randomUUID());
-        }
+    public void save(User user) {
         users.add(user);
-        return user;
-    }
-
-    @Override
-    public Optional<User> update(UUID id, User user) {
-        return users.stream()
-                .filter(u -> u.getId().equals(id))
-                .findFirst()
-                .map(u -> {
-                    u.setId(id);
-                    u.setPseudo(user.getPseudo());
-                    u.setEmail(user.getEmail());
-                    u.setPassword(user.getPassword());
-                    return u;
-                });
     }
 
     @Override

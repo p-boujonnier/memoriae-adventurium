@@ -1,14 +1,14 @@
 package fr.fae.project.memoriaeback.account.user.api.dtos.requests;
 
-public class UserCreateRequest {
+public class UserRequest {
     private String pseudo;
     private String email;
     private String password;
 
-    public UserCreateRequest() {
+    public UserRequest() {
     }
 
-    public UserCreateRequest(String pseudo, String email, String password) {
+    public UserRequest(String pseudo, String email, String password) {
         this.setPseudo(pseudo);
         this.setEmail(email);
         this.setPassword(password);

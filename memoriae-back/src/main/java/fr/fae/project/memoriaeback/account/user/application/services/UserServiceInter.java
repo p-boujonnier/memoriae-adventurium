@@ -13,7 +13,5 @@ public interface UserServiceInter {
 
     User save(User user);
 
-    User update(UUID id, User user);
-
     void delete(UUID id);
 }

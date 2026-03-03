@@ -55,23 +55,6 @@ public class UserController {
     }
 
     /**
-     * PUT /api/users/{id}
-     * @param uuid User ID
-     * @param user Updated user
-     * @return Updated user
-     */
-    @PutMapping("/{uuid}")
-    public ResponseEntity<User> update(
-            @PathVariable UUID uuid,
-            @RequestBody User user) {
-        User updatedUser = userServiceInter.update(uuid, user);
-        if (updatedUser == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(user);
-    }
-
-    /**
      * DELETE /api/users/{id}
      * @param uuid User ID
      * @return Deleted user
