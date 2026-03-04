@@ -1,23 +1,37 @@
 package fr.fae.project.memoriaeback.account.user.api.dtos.requests;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class UserCreateRequest {
+
+    // Attributes
+    @NotBlank(message = "2204:Missing required field")
+    @Size(min = 3, message = "2203:Invalid username format")
     private String pseudo;
+
+    @NotBlank(message = "2204:Missing required field")
+    @Email(message = "2200:Invalid email format")
     private String email;
+
+    @NotBlank(message = "2204:Missing required field")
+    @Size(min = 8, message = "2201:Password too short")
     private String password;
 
+    // Constructors
     public UserCreateRequest() {
     }
-
     public UserCreateRequest(String pseudo, String email, String password) {
         this.setPseudo(pseudo);
         this.setEmail(email);
         this.setPassword(password);
     }
 
+    // Getters & Setters
     public String getPseudo() {
         return pseudo;
     }
-
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
@@ -25,7 +39,6 @@ public class UserCreateRequest {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
@@ -33,7 +46,6 @@ public class UserCreateRequest {
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
     }
