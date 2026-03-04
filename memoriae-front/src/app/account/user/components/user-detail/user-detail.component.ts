@@ -31,7 +31,7 @@ export class UserDetailComponent implements OnInit{
     this.router.navigate(['/users', this.user?.id, 'edit']);
   }
 
-  onDelete(): void {
+  onBack(): void {
     this.router.navigate(['/users']);
   }
 }

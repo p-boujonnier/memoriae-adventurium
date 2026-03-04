@@ -1,11 +1,10 @@
 package fr.fae.project.memoriaeback.account.user.api.controllers;
 
-import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserRequest;
+import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserCreateRequest;
 import fr.fae.project.memoriaeback.account.user.api.dtos.responses.UserPublicResponse;
 import fr.fae.project.memoriaeback.account.user.api.mappers.UserMapper;
 import fr.fae.project.memoriaeback.account.user.application.common.ServiceResponse;
 import fr.fae.project.memoriaeback.account.user.application.services.UserServiceInter;
-import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,13 +65,13 @@ public class UserController {
      * POST /api/users
      * Creates a new user.
      *
-     * @param userRequest the user data to be created
+     * @param userCreateRequest the user data to be created
      * @return {@link ResponseEntity} containing a {@link ServiceResponse} with the created user,
      */
     @PostMapping
-    public ResponseEntity<ServiceResponse<UserPublicResponse>> save(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<ServiceResponse<UserPublicResponse>> save(@RequestBody UserCreateRequest userCreateRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                userServiceInter.save(mapper.toUser(userRequest)).map(mapper::toUserResponse)
+                userServiceInter.save(mapper.toUser(userCreateRequest)).map(mapper::toUserResponse)
         );
     }
 
