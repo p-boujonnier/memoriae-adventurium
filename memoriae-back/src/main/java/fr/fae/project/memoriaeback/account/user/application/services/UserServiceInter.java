@@ -12,7 +12,9 @@ public interface UserServiceInter {
 
     ServiceResponse<List<User>> findAll();
 
-    ServiceResponse<User> save(User user);
+    ServiceResponse<User> create(User user);
+
+    ServiceResponse<User> update(User user);
 
     ServiceResponse<Void> delete(UUID id);
 }
