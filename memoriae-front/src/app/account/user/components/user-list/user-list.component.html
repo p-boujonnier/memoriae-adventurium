@@ -1,13 +1,42 @@
-<h2>Liste des utilisateurs</h2>
+<div class="max-w-4xl mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-medieval text-gold uppercase tracking-widest">Utilisateurs</h2>
+    <button
+      (click)="onCreate()"
+      class="bg-blood hover:bg-blood-light text-parchment px-4 py-2 rounded border border-gold-dark transition-colors text-sm uppercase tracking-wide font-medieval">
+      + Créer un utilisateur
+    </button>
+  </div>
 
-<button (click)="onCreate()">Créer un utilisateur</button>
-
-<ul>
-  @for (user of users; track user.id) {
-    <li>
-      {{ user.pseudo }} - {{ user.email }}
-      <button (click)="onEdit(user.id)">Modifier</button>
-      <button (click)="onDelete(user.id)">Supprimer</button>
-    </li>
-  }
-</ul>
+  <div class="bg-parchment rounded border border-gold-dark overflow-hidden shadow-lg">
+    <table class="w-full">
+      <thead class="bg-gold-dark/60 text-stone-dark text-xs uppercase tracking-wider border-b border-gold-dark">
+      <tr>
+        <th class="px-6 py-3 text-left">Pseudo</th>
+        <th class="px-6 py-3 text-left">Email</th>
+        <th class="px-6 py-3 text-right">Actions</th>
+      </tr>
+      </thead>
+      <tbody class="divide-y divide-gold-dark/20">
+        @for (user of users; track user.id) {
+          <tr class="hover:bg-gold-dark/10 transition-colors">
+            <td class="px-6 py-4 font-medieval font-medium text-stone-dark">{{ user.pseudo }}</td>
+            <td class="px-6 py-4 text-stone-mid">{{ user.email }}</td>
+            <td class="px-6 py-4 flex justify-end gap-2">
+              <button
+                (click)="onEdit(user.id)"
+                class="text-gold-dark hover:text-gold px-3 py-1 rounded border bg-gold-light/50 border-gold-dark hover:bg-gold-dark/10 transition-colors text-sm font-medieval">
+                Modifier
+              </button>
+              <button
+                (click)="onDelete(user.id)"
+                class="text-blood hover:text-blood-light px-3 py-1 rounded border bg-blood/30 border-blood hover:bg-blood/10 transition-colors text-sm font-medieval">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
