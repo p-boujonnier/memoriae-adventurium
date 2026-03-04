@@ -24,6 +24,9 @@ module.exports = {
           dark: '#1a3d28',
         },
       },
+      backgroundColor: {
+        page: '#1a3d28',
+      },
       fontFamily: {
         medieval: ['Palatino Linotype', 'Georgia', 'serif'],
       },
