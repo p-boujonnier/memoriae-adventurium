@@ -1,6 +1,7 @@
 package fr.fae.project.memoriaeback.account.user.api.controllers;
 
 import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserCreateRequest;
+import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserUpdateRequest;
 import fr.fae.project.memoriaeback.account.user.api.dtos.responses.UserPublicResponse;
 import fr.fae.project.memoriaeback.account.user.api.mappers.UserMapper;
 import fr.fae.project.memoriaeback.account.user.application.common.ServiceResponse;
@@ -69,9 +70,23 @@ public class UserController {
      * @return {@link ResponseEntity} containing a {@link ServiceResponse} with the created user,
      */
     @PostMapping
-    public ResponseEntity<ServiceResponse<UserPublicResponse>> save(@RequestBody UserCreateRequest userCreateRequest) {
+    public ResponseEntity<ServiceResponse<UserPublicResponse>> create(@RequestBody UserCreateRequest userCreateRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                userServiceInter.save(mapper.toUser(userCreateRequest)).map(mapper::toUserResponse)
+                userServiceInter.create(mapper.toUserFromCreate(userCreateRequest)).map(mapper::toUserResponse)
+        );
+    }
+
+    /**
+     * PUT /api/users
+     * Updates an existing user.
+     *
+     * @param userUpdateRequest the user data to be updated
+     * @return {@link ResponseEntity} containing a {@link ServiceResponse} with the updated user,
+     */
+    @PutMapping
+    public ResponseEntity<ServiceResponse<UserPublicResponse>> update(@RequestBody UserUpdateRequest userUpdateRequest) {
+        return ResponseEntity.ok(
+                userServiceInter.update(mapper.toUserFromUpdate(userUpdateRequest)).map(mapper::toUserResponse)
         );
     }
 
