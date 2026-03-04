@@ -41,7 +41,7 @@
 
 ## 2000 — User
 
-| Code | Meaning                     | Context                                                                                    |
+| Code | Message                     | Context                                                                                    |
 |:-----|:----------------------------|:-------------------------------------------------------------------------------------------|
 | 2000 | User created successfully   | The registration form is submitted with valid data, the account is created in the database |
 | 2001 | User retrieved successfully | The `GET /users/{id}` call correctly returns the user's profile                            |

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApiResponse } from '../../../common/api-response.model';
+import { ServiceResponse } from '../../../common/service-response.model';
 import { UserResponse } from '../models/dto/user-response.dto';
 import { map, Observable } from 'rxjs';
 import { UserCreateRequest } from '../models/dto/user-create-request.dto';
@@ -16,25 +16,25 @@ export class UserService {
   findAll() {
     console.log('CALL findAll ->', this.apiUrl);
     return this.http
-      .get<ApiResponse<UserResponse[]>>(this.apiUrl)
+      .get<ServiceResponse<UserResponse[]>>(this.apiUrl)
       .pipe(map((response) => response.data));
   }
 
   findById(id: string) {
     return this.http
-      .get<ApiResponse<UserResponse>>(`${this.apiUrl}/${id}`)
+      .get<ServiceResponse<UserResponse>>(`${this.apiUrl}/${id}`)
       .pipe(map((response) => response.data));
   }
 
   save(dto: UserCreateRequest): Observable<UserResponse> {
     return this.http
-      .post<ApiResponse<UserResponse>>(this.apiUrl, dto)
+      .post<ServiceResponse<UserResponse>>(this.apiUrl, dto)
       .pipe(map((response) => response.data));
   }
 
   delete(id: string): Observable<void> {
     return this.http
-      .delete<ApiResponse<void>>(`${this.apiUrl}/${id}`)
+      .delete<ServiceResponse<void>>(`${this.apiUrl}/${id}`)
       .pipe(map((response) => response.data));
   }
 }

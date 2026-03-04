@@ -66,9 +66,8 @@ public class UserController {
      * POST /api/users
      * Creates a new user.
      *
-     * @param user the user to be created
+     * @param userRequest the user data to be created
      * @return {@link ResponseEntity} containing a {@link ServiceResponse} with the created user,
-     *         with HTTP status 201 (Created)
      */
     @PostMapping
     public ResponseEntity<ServiceResponse<UserPublicResponse>> save(@RequestBody UserRequest userRequest) {
