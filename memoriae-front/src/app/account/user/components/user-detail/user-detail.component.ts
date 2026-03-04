@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserResponse } from '../../models/dto/user-response.dto';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,13 +9,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   imports: [],
   templateUrl: './user-detail.component.html',
 })
-export class UserDetailComponent implements OnInit{
+export class UserDetailComponent implements OnInit {
   user: UserResponse | null = null;
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class UserDetailComponent implements OnInit{
     if (userId) {
       this.userService.findById(userId).subscribe((data) => {
         this.user = data;
+        this.cdr.detectChanges();
       });
     }
   }

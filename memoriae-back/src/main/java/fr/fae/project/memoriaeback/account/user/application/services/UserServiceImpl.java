@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserServiceInter{
 
     @Override
     public ServiceResponse<User> findById(UUID id) {
-        if (id == null || userRepository.findById(id).isEmpty()) {
+        if (id == null) {
             return new ServiceResponse<>("2100","User not found",null);
         }
         return new ServiceResponse<>("2001","User retrieved successfully",userRepository.findById(id).get());
