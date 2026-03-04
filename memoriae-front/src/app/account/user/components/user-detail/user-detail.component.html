@@ -1,0 +1,8 @@
+@if (user) {
+  <h2>{{ user.pseudo }}</h2>
+  <p>Email : {{ user.email }}</p>
+  <button (click)="onEdit()">Modifier</button>
+  <button (click)="onBack()">Retour</button>
+} @else {
+  <p>Chargement...</p>
+}
