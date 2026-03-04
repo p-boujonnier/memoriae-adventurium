@@ -1,30 +1,49 @@
-<h2>{{ isEditMode ? 'Modifier' : 'Créer' }} un utilisateur</h2>
 
-<div>
-  <label>Pseudo</label>
-  <input type="text"
-         [ngModel]="isEditMode ? updateDTO.pseudo : createDTO.pseudo"
-         (ngModelChange)="isEditMode? updateDTO.pseudo = $event : createDTO.pseudo = $event" />
-</div>
+<h2 class="text-2xl font-medieval text-gold uppercase tracking-widest mb-8 text-center">
+  {{ isEditMode ? 'Modifier' : 'Créer' }} un utilisateur
+</h2>
+<div class="max-w-lg mx-auto">
+  <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8">
 
-<div>
-  <label>Email</label>
-  <input type="email"
-         [ngModel]="isEditMode ? updateDTO.email : createDTO.email"
-         (ngModelChange)="isEditMode? updateDTO.email = $event : createDTO.email = $event" />
-</div>
+    <div class="mb-5">
+      <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
+        Pseudo
+      </label>
+      <input type="text"
+             [ngModel]="isEditMode ? updateDTO.pseudo : createDTO.pseudo"
+             (ngModelChange)="isEditMode? updateDTO.pseudo = $event : createDTO.pseudo = $event"
+             class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+    </div>
 
-@if (!isEditMode) {
-  <div>
-    <label>Mot de passe</label>
-    <input type="password" [ngModel]="createDTO.password" />
+    <div class="mb-5">
+      <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
+        Email
+      </label>
+      <input type="email"
+             [ngModel]="isEditMode ? updateDTO.email : createDTO.email"
+             (ngModelChange)="isEditMode? updateDTO.email = $event : createDTO.email = $event"
+             class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+    </div>
+
+    @if (!isEditMode) {
+      <div class="mb-8">
+        <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
+          Mot de passe
+        </label>
+        <input type="password" [ngModel]="createDTO.password"
+               class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+      </div>
+    }
+    <div class="flex gap-4 mt-8">
+      <button (click)="submit()"
+              class="flex-1 bg-blood hover:bg-blood-light text-parchment py-2 rounded border border-gold-dark transition-colors font-medieval uppercase tracking-wide">
+        {{ isEditMode ? 'Modifier' : 'Créer' }}
+      </button>
+
+      <button (click)="cancel()"
+              class="flex-1 bg-transparent hover:bg-gold-dark/10 text-stone-dark py-2 rounded border border-gold-dark transition-colors font-medieval uppercase tracking-wide">
+        Annuler
+      </button>
+    </div>
   </div>
-}
-
-<button (click)="submit()">
-  {{ isEditMode ? 'Modifier' : 'Créer' }}
-</button>
-
-<button (click)="cancel()">
-  Annuler
-</button>
+</div>
