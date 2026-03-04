@@ -20,7 +20,11 @@
       <tbody class="divide-y divide-gold-dark/20">
         @for (user of users; track user.id) {
           <tr class="hover:bg-gold-dark/10 transition-colors">
-            <td class="px-6 py-4 font-medieval font-medium text-stone-dark">{{ user.pseudo }}</td>
+            <td class="px-6 py-4 font-medieval font-medium text-stone-dark">
+              <a [routerLink]="['/users', user.id]" class="hover:text-gold-dark transition-colors cursor-pointer">
+                {{ user.pseudo }}
+              </a>
+            </td>
             <td class="px-6 py-4 text-stone-mid">{{ user.email }}</td>
             <td class="px-6 py-4 flex justify-end gap-2">
               <button
