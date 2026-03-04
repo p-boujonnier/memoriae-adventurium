@@ -1,4 +1,4 @@
-export interface UserUpdateRequestDTO {
+export interface UserUpdateRequest {
   id: string; // TODO: remove when auth is in place
   pseudo: string;
   email: string; // TODO: separate endpoint /users/change-email with confirmation flow

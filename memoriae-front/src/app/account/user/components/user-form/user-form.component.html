@@ -2,18 +2,22 @@
 
 <div>
   <label>Pseudo</label>
-  <input type="text" [(ngModel)]="dto.pseudo" />
+  <input type="text"
+         [ngModel]="isEditMode ? updateDTO.pseudo : createDTO.pseudo"
+         (ngModelChange)="isEditMode? updateDTO.pseudo = $event : createDTO.pseudo = $event" />
 </div>
 
 <div>
   <label>Email</label>
-  <input type="email" [(ngModel)]="dto.email" />
+  <input type="email"
+         [ngModel]="isEditMode ? updateDTO.email : createDTO.email"
+         (ngModelChange)="isEditMode? updateDTO.email = $event : createDTO.email = $event" />
 </div>
 
 @if (!isEditMode) {
   <div>
     <label>Mot de passe</label>
-    <input type="password" [(ngModel)]="dto.password" />
+    <input type="password" [ngModel]="createDTO.password" />
   </div>
 }
 
@@ -21,6 +25,6 @@
   {{ isEditMode ? 'Modifier' : 'Créer' }}
 </button>
 
-<button (click)="router.navigate(['/users'])">
+<button (click)="cancel()">
   Annuler
 </button>

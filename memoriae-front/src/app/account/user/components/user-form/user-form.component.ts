@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UserCreateRequest } from '../../models/dto/user-create-request.dto';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserCreateRequest } from '../../models/dto/user-create-request.dto';
+import { UserUpdateRequest } from '../../models/dto/user-update-request.dto';
 
 @Component({
   selector: 'app-user-form',
@@ -11,14 +12,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './user-form.component.html',
 })
 export class UserFormComponent implements OnInit {
-  dto: UserCreateRequest = {
+  createDTO: UserCreateRequest = {
     pseudo: '',
     email: '',
     password: '',
   };
 
+  updateDTO: UserUpdateRequest = {
+    id: '',
+    pseudo: '',
+    email: '',
+  };
+
   isEditMode = false;
-  userId: string | null = null;
 
   constructor(
     private userService: UserService,
@@ -27,18 +33,31 @@ export class UserFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.route.snapshot.paramMap.get('id');
-    if (this.userId) {
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id) {
       this.isEditMode = true;
-      this.userService.findById(this.userId).subscribe((user) => {
-        this.dto.pseudo = user.pseudo;
-        this.dto.email = user.email;
+      this.userService.findById(id).subscribe(
+        user => {
+          this.updateDTO.id = user.id;
+          this.updateDTO.pseudo = user.pseudo;
+          this.updateDTO.email = user.email;
+        });
+    }
+  }
+
+  submit(): void {
+    if (this.isEditMode){
+      this.userService.update(this.updateDTO).subscribe(() => {
+        this.router.navigate(['/users']);
+      });
+    } else {
+      this.userService.create(this.createDTO).subscribe(() => {
+        this.router.navigate(['/users']);
       });
     }
   }
-  submit(): void {
-    this.userService.save(this.dto).subscribe(() => {
-      this.router.navigate(['/users']);
-    })
+
+  cancel(): void {
+    this.router.navigate(['/users']);
   }
 }
