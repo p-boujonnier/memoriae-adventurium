@@ -6,6 +6,7 @@ import fr.fae.project.memoriaeback.account.user.api.dtos.responses.UserPublicRes
 import fr.fae.project.memoriaeback.account.user.api.mappers.UserMapper;
 import fr.fae.project.memoriaeback.account.user.application.common.ServiceResponse;
 import fr.fae.project.memoriaeback.account.user.application.services.UserServiceInter;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -70,7 +71,7 @@ public class UserController {
      * @return {@link ResponseEntity} containing a {@link ServiceResponse} with the created user,
      */
     @PostMapping
-    public ResponseEntity<ServiceResponse<UserPublicResponse>> create(@RequestBody UserCreateRequest userCreateRequest) {
+    public ResponseEntity<ServiceResponse<UserPublicResponse>> create(@Valid @RequestBody UserCreateRequest userCreateRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 userServiceInter.create(mapper.toUserFromCreate(userCreateRequest)).map(mapper::toUserResponse)
         );
@@ -84,7 +85,7 @@ public class UserController {
      * @return {@link ResponseEntity} containing a {@link ServiceResponse} with the updated user,
      */
     @PutMapping
-    public ResponseEntity<ServiceResponse<UserPublicResponse>> update(@RequestBody UserUpdateRequest userUpdateRequest) {
+    public ResponseEntity<ServiceResponse<UserPublicResponse>> update(@Valid @RequestBody UserUpdateRequest userUpdateRequest) {
         return ResponseEntity.ok(
                 userServiceInter.update(mapper.toUserFromUpdate(userUpdateRequest)).map(mapper::toUserResponse)
         );
