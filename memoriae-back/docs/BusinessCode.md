@@ -51,11 +51,7 @@
 | 2101 | Email already in use        | At registration, the provided email is already associated with an existing account         |
 | 2102 | Username already taken      | At registration or update, the chosen username is already taken by another user            |
 | 2103 | Deletion not possible       | Account deletion is blocked because it still has linked characters or notes                |
-| 2200 | Invalid email format        | The provided email does not match the `xxx@xxx.xx` format                                  |
-| 2201 | Password too short          | The submitted password contains fewer characters than the required minimum                 |
-| 2202 | Password too weak           | The password does not contain a required uppercase letter, digit, or special character     |
-| 2203 | Invalid username format     | The username contains forbidden characters (spaces, unauthorized special characters)       |
-| 2204 | Missing required field      | One of the mandatory fields (`email`, `password`, `username`) is absent from the body      |
+| 2200 | Validation errors           | An error had been detected during validation of resquest body                              |
 | 2300 | Action not authorized       | A non-admin user attempts to access another user's profile                                 |
 | 2301 | Update forbidden            | A user attempts to modify another user's profile                                           |
 | 2302 | Deletion forbidden          | A user attempts to delete another user's account                                           |
