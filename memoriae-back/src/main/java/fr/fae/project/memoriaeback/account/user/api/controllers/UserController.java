@@ -1,12 +1,11 @@
 package fr.fae.project.memoriaeback.account.user.api.controllers;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserCreateRequest;
 import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserUpdateRequest;
 import fr.fae.project.memoriaeback.account.user.api.dtos.responses.UserPublicResponse;
 import fr.fae.project.memoriaeback.account.user.api.mappers.UserMapper;
 import fr.fae.project.memoriaeback.account.user.application.common.ServiceResponse;
-import fr.fae.project.memoriaeback.account.user.application.services.UserServiceInter;
+import fr.fae.project.memoriaeback.account.user.application.services.IUserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +20,12 @@ import java.util.UUID;
 public class UserController {
 
     // Injected dependencies
-    private final UserServiceInter userServiceInter;
+    private final IUserService IUserService;
     private final UserMapper mapper;
 
     // Constructors
-    public UserController(UserServiceInter userServiceInter, UserMapper mapper) {
-        this.userServiceInter = userServiceInter;
+    public UserController(IUserService IUserService, UserMapper mapper) {
+        this.IUserService = IUserService;
         this.mapper = mapper;
     }
 
@@ -42,7 +41,7 @@ public class UserController {
     @GetMapping("/{uuid}")
     public ResponseEntity<ServiceResponse<UserPublicResponse>> findById(@PathVariable UUID uuid) {
         return ResponseEntity.ok(
-                userServiceInter.findById(uuid).map(mapper::toUserResponse)
+                IUserService.findById(uuid).map(mapper::toUserResponse)
         );
     }
 
@@ -55,7 +54,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<ServiceResponse<List<UserPublicResponse>>> findAll() {
         return ResponseEntity.ok(
-                userServiceInter
+                IUserService
                         .findAll()
                         .map(users -> users
                                 .stream()
@@ -75,7 +74,7 @@ public class UserController {
     public ResponseEntity<ServiceResponse<UserPublicResponse>> create(
             @Valid @RequestBody UserCreateRequest userCreateRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                userServiceInter
+                IUserService
                         .create(mapper.toUserFromCreate(userCreateRequest))
                         .map(mapper::toUserResponse)
         );
@@ -91,7 +90,7 @@ public class UserController {
     @PutMapping
     public ResponseEntity<ServiceResponse<UserPublicResponse>> update(@Valid @RequestBody UserUpdateRequest userUpdateRequest) {
         return ResponseEntity.ok(
-                userServiceInter.update(mapper.toUserFromUpdate(userUpdateRequest)).map(mapper::toUserResponse)
+                IUserService.update(mapper.toUserFromUpdate(userUpdateRequest)).map(mapper::toUserResponse)
         );
     }
 
@@ -105,7 +104,7 @@ public class UserController {
      */
     @DeleteMapping("/{uuid}")
     public ResponseEntity<ServiceResponse<Void>> delete(@PathVariable UUID uuid) {
-        return ResponseEntity.ok(userServiceInter.delete(uuid));
+        return ResponseEntity.ok(IUserService.delete(uuid));
     }
 }
 

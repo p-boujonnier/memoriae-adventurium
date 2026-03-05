@@ -1,6 +1,7 @@
 package fr.fae.project.memoriaeback.account.user.domain.repositories;
 
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,8 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Profile("mock")
 @Repository
-public class UserRepositoryMock implements UserRepositoryInter {
+public class UserRepositoryMock implements IUserRepository {
 
     private final List<User> users = new ArrayList<>(List.of(
             new User(UUID.randomUUID(), "Alice", "alice@memoriae.com", "password"),

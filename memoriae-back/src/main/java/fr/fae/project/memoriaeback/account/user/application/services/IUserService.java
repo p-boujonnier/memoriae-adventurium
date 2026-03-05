@@ -6,7 +6,7 @@ import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import java.util.List;
 import java.util.UUID;
 
-public interface UserServiceInter {
+public interface IUserService {
 
     ServiceResponse<User> findById(UUID id);
 

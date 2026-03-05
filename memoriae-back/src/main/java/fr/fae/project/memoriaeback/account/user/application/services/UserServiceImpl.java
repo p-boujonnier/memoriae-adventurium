@@ -2,18 +2,18 @@ package fr.fae.project.memoriaeback.account.user.application.services;
 
 import fr.fae.project.memoriaeback.account.user.application.common.ServiceResponse;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
-import fr.fae.project.memoriaeback.account.user.domain.repositories.UserRepositoryInter;
+import fr.fae.project.memoriaeback.account.user.domain.repositories.IUserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class UserServiceImpl implements UserServiceInter{
+public class UserServiceImpl implements IUserService {
 
-    private final UserRepositoryInter userRepository;
+    private final IUserRepository userRepository;
 
-    public UserServiceImpl(UserRepositoryInter userRepository) {
+    public UserServiceImpl(IUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
