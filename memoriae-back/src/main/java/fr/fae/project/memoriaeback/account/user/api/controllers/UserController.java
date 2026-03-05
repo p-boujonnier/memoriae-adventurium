@@ -1,5 +1,6 @@
 package fr.fae.project.memoriaeback.account.user.api.controllers;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserCreateRequest;
 import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserUpdateRequest;
 import fr.fae.project.memoriaeback.account.user.api.dtos.responses.UserPublicResponse;
@@ -71,9 +72,12 @@ public class UserController {
      * @return {@link ResponseEntity} containing a {@link ServiceResponse} with the created user,
      */
     @PostMapping
-    public ResponseEntity<ServiceResponse<UserPublicResponse>> create(@Valid @RequestBody UserCreateRequest userCreateRequest) {
+    public ResponseEntity<ServiceResponse<UserPublicResponse>> create(
+            @Valid @RequestBody UserCreateRequest userCreateRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                userServiceInter.create(mapper.toUserFromCreate(userCreateRequest)).map(mapper::toUserResponse)
+                userServiceInter
+                        .create(mapper.toUserFromCreate(userCreateRequest))
+                        .map(mapper::toUserResponse)
         );
     }
 
