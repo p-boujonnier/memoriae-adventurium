@@ -18,7 +18,7 @@ export class UserService {
     console.log('CALL findAll ->', this.apiUrl);
     return this.http
       .get<ServiceResponse<UserResponse[]>>(this.apiUrl)
-      .pipe(map((response) => response.data));
+      .pipe(map((response) => response.data ?? []));
   }
 
   findById(id: string) {
@@ -27,19 +27,19 @@ export class UserService {
       .pipe(map((response) => response.data));
   }
 
-  create(dto: UserCreateRequest): Observable<UserResponse> {
+  create(dto: UserCreateRequest): Observable<UserResponse | null> {
     return this.http
       .post<ServiceResponse<UserResponse>>(this.apiUrl, dto)
       .pipe(map((response) => response.data));
   }
 
-  update(dto: UserUpdateRequest): Observable<UserResponse> {
+  update(dto: UserUpdateRequest): Observable<UserResponse | null> {
     return this.http
       .put<ServiceResponse<UserResponse>>(this.apiUrl, dto)
       .pipe(map((response) => response.data));
   }
 
-  delete(id: string): Observable<void> {
+  delete(id: string): Observable<void | null> {
     return this.http
       .delete<ServiceResponse<void>>(`${this.apiUrl}/${id}`)
       .pipe(map((response) => response.data));

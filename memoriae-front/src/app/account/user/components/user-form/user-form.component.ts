@@ -36,28 +36,29 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if(id) {
+    if (id) {
       this.isEditMode = true;
-      this.userService.findById(id).subscribe(
-        user => {
+      this.userService.findById(id).subscribe((user) => {
+        if (user) {
           this.updateDTO.id = user.id;
           this.updateDTO.pseudo = user.pseudo;
           this.updateDTO.email = user.email;
-        });
+        }
+      });
     }
   }
 
   submit(): void {
     this.errorMessage = null;
-    if (this.isEditMode){
+    if (this.isEditMode) {
       this.userService.update(this.updateDTO).subscribe({
         next: () => this.router.navigate(['/users']),
-        error: (err) => (this.errorMessage = err.message)
+        error: (err) => (this.errorMessage = err.message),
       });
     } else {
       this.userService.create(this.createDTO).subscribe({
-        next : () => this.router.navigate(['/users']),
-        error: (err) => (this.errorMessage = err.message)
+        next: () => this.router.navigate(['/users']),
+        error: (err) => (this.errorMessage = err.message),
       });
     }
   }
