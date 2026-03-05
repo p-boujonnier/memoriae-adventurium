@@ -15,7 +15,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   findAll() {
-    console.log('CALL findAll ->', this.apiUrl);
     return this.http
       .get<ServiceResponse<UserResponse[]>>(this.apiUrl)
       .pipe(map((response) => response.data ?? []));

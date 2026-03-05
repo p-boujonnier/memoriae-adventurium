@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -26,12 +26,13 @@ export class UserFormComponent implements OnInit {
 
   isEditMode = false;
 
-  errorMessage: string | null = null;
+  errorMessages: { field: string; message: string }[] = [];
 
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
-    protected router: Router,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -49,16 +50,24 @@ export class UserFormComponent implements OnInit {
   }
 
   submit(): void {
-    this.errorMessage = null;
     if (this.isEditMode) {
+      // Modification form
       this.userService.update(this.updateDTO).subscribe({
         next: () => this.router.navigate(['/users']),
-        error: (err) => (this.errorMessage = err.message),
+        error: (err) => {
+          this.errorMessages = err.data ?? [];
+          this.cdr.detectChanges();
+        },
       });
     } else {
+      // Creation form
       this.userService.create(this.createDTO).subscribe({
         next: () => this.router.navigate(['/users']),
-        error: (err) => (this.errorMessage = err.message),
+        error: (err) => {
+          console.log(err.data);
+          this.errorMessages = err.data ?? [];
+          this.cdr.detectChanges();
+        },
       });
     }
   }

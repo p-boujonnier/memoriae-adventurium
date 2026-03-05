@@ -1,4 +1,3 @@
-
 <h2 class="text-2xl font-medieval text-gold uppercase tracking-widest mb-8 text-center">
   {{ isEditMode ? 'Modifier' : 'Créer' }} un utilisateur
 </h2>
@@ -15,6 +14,11 @@
              [ngModel]="isEditMode ? updateDTO.pseudo : createDTO.pseudo"
              (ngModelChange)="isEditMode? updateDTO.pseudo = $event : createDTO.pseudo = $event"
              class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+      @for (error of errorMessages; track error.field) {
+        @if (error.field === 'pseudo') {
+          <p class="text-red-500 text-sm mb-2">{{ error.message }}</p>
+        }
+      }
     </div>
 
     <!-- Email -->
@@ -26,6 +30,11 @@
              [ngModel]="isEditMode ? updateDTO.email : createDTO.email"
              (ngModelChange)="isEditMode? updateDTO.email = $event : createDTO.email = $event"
              class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+      @for (error of errorMessages; track error.field) {
+        @if (error.field === 'email') {
+          <p class="text-red-500 text-sm mb-2">{{ error.message }}</p>
+        }
+      }
     </div>
 
     <!-- Password -->
@@ -35,16 +44,16 @@
           Mot de passe
         </label>
         <input type="password" [ngModel]="createDTO.password"
+               (ngModelChange)="createDTO.password = $event"
                class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+        @for (error of errorMessages; track error.field) {
+          @if (error.field === 'password') {
+            <p class="text-red-500 text-sm mb-2">{{ error.message }}</p>
+          }
+        }
       </div>
     }
 
-  <!-- === ERROR MESSAGE === -->
-    @if (errorMessage) {
-      <div class="mb-4 px-4 py-3 rounded border boreder-blood bg-blood/10 text-blood font-medieval text-sm">
-        {{ errorMessage }}
-      </div>
-    }
 
     <!-- === BUTTONS === -->
     <div class="flex gap-4 mt-8">
