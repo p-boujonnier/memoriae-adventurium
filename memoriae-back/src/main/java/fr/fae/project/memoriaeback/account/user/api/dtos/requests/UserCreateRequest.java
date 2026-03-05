@@ -7,16 +7,16 @@ import jakarta.validation.constraints.Size;
 public class UserCreateRequest {
 
     // Attributes
-    @NotBlank(message = "2204:Missing required field")
-    @Size(min = 3, message = "2203:Invalid username format")
+    @NotBlank(message = "Missing required field")
+    @Size(min = 3, message = "Invalid username format")
     private String pseudo;
 
-    @NotBlank(message = "2204:Missing required field")
-    @Email(message = "2200:Invalid email format")
+    @NotBlank(message = "Missing required field")
+    @Email(message = "Invalid email format")
     private String email;
 
-    @NotBlank(message = "2204:Missing required field")
-    @Size(min = 8, message = "2201:Password too short")
+    @NotBlank(message = "Missing required field")
+    @Size(min = 8, message = "Password too short")
     private String password;
 
     // Constructors
