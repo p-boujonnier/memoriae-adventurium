@@ -26,6 +26,8 @@ export class UserFormComponent implements OnInit {
 
   isEditMode = false;
 
+  errorMessage: string | null = null;
+
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
@@ -46,13 +48,16 @@ export class UserFormComponent implements OnInit {
   }
 
   submit(): void {
+    this.errorMessage = null;
     if (this.isEditMode){
-      this.userService.update(this.updateDTO).subscribe(() => {
-        this.router.navigate(['/users']);
+      this.userService.update(this.updateDTO).subscribe({
+        next: () => this.router.navigate(['/users']),
+        error: (err) => (this.errorMessage = err.message)
       });
     } else {
-      this.userService.create(this.createDTO).subscribe(() => {
-        this.router.navigate(['/users']);
+      this.userService.create(this.createDTO).subscribe({
+        next : () => this.router.navigate(['/users']),
+        error: (err) => (this.errorMessage = err.message)
       });
     }
   }
