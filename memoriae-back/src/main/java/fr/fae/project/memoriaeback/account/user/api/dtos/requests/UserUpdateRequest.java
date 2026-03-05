@@ -11,12 +11,12 @@ public class UserUpdateRequest {
     // Attributes
     private UUID id; // TODO: remove when auth is in place
 
-    @NotBlank(message = "2204:Missing required field")
-    @Size(min = 3, message = "2203:Invalid username format")
+    @NotBlank(message = "Missing required field")
+    @Size(min = 3, message = "Invalid username format")
     private String pseudo;
 
-    @NotBlank(message = "2204:Missing required field")
-    @Email(message = "2200:Invalid email format")
+    @NotBlank(message = "Missing required field")
+    @Email(message = "Invalid email format")
     private String email; // TODO: separate endpoint with confirmation flow
 
     // Constructors
