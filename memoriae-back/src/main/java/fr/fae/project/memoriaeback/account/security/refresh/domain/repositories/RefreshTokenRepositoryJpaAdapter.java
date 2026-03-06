@@ -39,7 +39,7 @@ public class RefreshTokenRepositoryJpaAdapter implements IRefreshTokenRepository
     }
 
     @Override
-    public void deleteAllByExpiredAtBefore(OffsetDateTime dateTime) {
-        refreshTokenJpaRepository.deleteAllByExpiredAtBefore(dateTime);
+    public void deleteAllByExpiresAtBefore(OffsetDateTime dateTime) {
+        refreshTokenJpaRepository.deleteAllByExpiresAtBefore(dateTime);
     }
 }

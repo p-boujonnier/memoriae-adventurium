@@ -55,7 +55,7 @@ public class RefreshTokenRepositoryMock implements IRefreshTokenRepository{
     }
 
     @Override
-    public void deleteAllByExpiredAtBefore(OffsetDateTime dateTime) {
+    public void deleteAllByExpiresAtBefore(OffsetDateTime dateTime) {
         tokens.removeIf(rt -> rt.getExpiresAt().isBefore(dateTime));
     }
 }

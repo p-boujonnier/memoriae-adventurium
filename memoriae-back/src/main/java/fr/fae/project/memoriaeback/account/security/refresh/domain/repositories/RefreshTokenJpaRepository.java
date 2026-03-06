@@ -16,7 +16,7 @@ public interface RefreshTokenJpaRepository extends JpaRepository<RefreshToken, U
 
     Optional<RefreshToken> findByTokenHash(String tokenHash);
 
-    void deleteAllByExpiredAtBefore(OffsetDateTime expiredAt);
+    void deleteAllByExpiresAtBefore(OffsetDateTime expiredAt);
 
     @Transactional
     @Modifying(clearAutomatically = true, flushAutomatically = true)
