@@ -139,9 +139,11 @@ public class AuthServiceImpl implements IAuthService {
         User user = rt.getUser();
 
         String accessToken = jwtService.generateAccessToken(user.getId(), user.getEmail());
+        String newRawToken = rotatedToken.getData();
 
         return new ServiceResponse<>("1002", "Token refreshed successfully",
-                new AuthResponse(accessToken, user.getId(), user.getPseudo(), accessTokenExpiration));
+                new AuthResponse(accessToken, newRawToken, user.getId(), user.getPseudo(), accessTokenExpiration)
+        );
     }
 
     @Override
