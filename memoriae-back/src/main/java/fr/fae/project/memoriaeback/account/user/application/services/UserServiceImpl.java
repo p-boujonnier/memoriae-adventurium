@@ -3,6 +3,7 @@ package fr.fae.project.memoriaeback.account.user.application.services;
 import fr.fae.project.memoriaeback.common.ServiceResponse;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import fr.fae.project.memoriaeback.account.user.domain.repositories.IUserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +13,11 @@ import java.util.UUID;
 public class UserServiceImpl implements IUserService {
 
     private final IUserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(IUserRepository userRepository) {
+    public UserServiceImpl(IUserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,6 +35,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServiceResponse<User> create(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User created = userRepository.save(user);
         return new ServiceResponse<>("2000", "User created successfully", created);
     }
