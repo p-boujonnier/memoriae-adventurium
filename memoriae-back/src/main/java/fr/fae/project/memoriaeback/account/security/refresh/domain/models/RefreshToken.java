@@ -58,7 +58,7 @@ public class RefreshToken {
     public RefreshToken() {
     }
 
-    public RefreshToken(User user, String tokenHash, String device, String ipAddress, String userAgent, long timeoutDays) {
+    public RefreshToken(User user, String tokenHash, String device, String ipAddress, String userAgent, long timeoutMs) {
         this.user = user;
         this.tokenHash = tokenHash;
         this.device = device;
@@ -66,7 +66,7 @@ public class RefreshToken {
         this.userAgent = userAgent;
         this.issuedAt = OffsetDateTime.now();
         this.lastUsedAt = OffsetDateTime.now();
-        this.expiresAt = OffsetDateTime.now().plusDays(timeoutDays);
+        this.expiresAt = OffsetDateTime.now().plusNanos(timeoutMs * 1_000_000);
         this.revoked = false;
     }
 

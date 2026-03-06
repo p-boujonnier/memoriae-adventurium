@@ -18,14 +18,14 @@ import java.util.HexFormat;
 import java.util.Optional;
 
 @Service
-public class RefreshTokenService implements IRefreshTokenService {
+public class RefreshTokenServiceImpl implements IRefreshTokenService {
 
     private final IRefreshTokenRepository refreshTokenRepository;
     @Value("${jwt.refresh-token.expiration}")
     private long refreshTokenExpiration;
     private final SecureRandom random = new SecureRandom();
 
-    public RefreshTokenService(IRefreshTokenRepository refreshTokenRepository) {
+    public RefreshTokenServiceImpl(IRefreshTokenRepository refreshTokenRepository) {
         this.refreshTokenRepository = refreshTokenRepository;
     }
 
