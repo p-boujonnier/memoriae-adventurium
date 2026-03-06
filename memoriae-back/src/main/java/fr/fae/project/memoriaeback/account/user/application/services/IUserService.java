@@ -8,13 +8,15 @@ import java.util.UUID;
 
 public interface IUserService {
 
+    // CRUD
     ServiceResponse<User> findById(UUID id);
-
     ServiceResponse<List<User>> findAll();
-
     ServiceResponse<User> create(User user);
-
     ServiceResponse<User> update(User user);
-
     ServiceResponse<Void> delete(UUID id);
+
+    // Utils
+    boolean existsById(UUID id);
+    boolean existsByPseudo(String pseudo);
+    boolean existsByEmail(String email);
 }

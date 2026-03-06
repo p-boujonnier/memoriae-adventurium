@@ -13,17 +13,18 @@ import java.util.UUID;
 @Repository
 public class UserRepositoryMock implements IUserRepository {
 
+    // Attributes
     private final List<User> users = new ArrayList<>(List.of(
             new User(UUID.randomUUID(), "Alice", "alice@memoriae.com", "password"),
             new User(UUID.randomUUID(), "Bob", "bob@memoriae.com", "password"),
             new User(UUID.randomUUID(), "Charlie", "charlie@memoriae.com", "password")
     ));
 
+    // CRUD operations
     @Override
     public List<User> findAll() {
         return users;
     }
-
     @Override
     public Optional<User> findById(UUID id) {
         return users
@@ -31,17 +32,14 @@ public class UserRepositoryMock implements IUserRepository {
                 .filter(u -> u.getId().equals(id))
                 .findFirst();
     }
-
     @Override
     public Optional<User> findByPseudo(String pseudo) {
         return users.stream().filter(u -> u.getPseudo().equals(pseudo)).findFirst();
     }
-
     @Override
     public Optional<User> findByEmail(String email) {
         return users.stream().filter(u -> u.getEmail().equals(email)).findFirst();
     }
-
     @Override
     public User save(User user) {
         if (user.getId() != null && existsById(user.getId())) {
@@ -52,14 +50,22 @@ public class UserRepositoryMock implements IUserRepository {
         users.add(user);
         return user;
     }
-
     @Override
     public void deleteById(UUID id) {
         users.removeIf(user -> user.getId().equals(id));
     }
 
+    // Utility methods
     @Override
     public boolean existsById(UUID id) {
         return users.stream().anyMatch(user -> user.getId().equals(id));
+    }
+    @Override
+    public boolean existsByPseudo(String pseudo) {
+        return users.stream().anyMatch(user -> user.getPseudo().equals(pseudo));
+    }
+    @Override
+    public boolean existsByEmail(String email) {
+        return users.stream().anyMatch(user -> user.getEmail().equals(email));
     }
 }

@@ -59,4 +59,19 @@ public class UserServiceImpl implements IUserService {
                 })
                 .orElse(new ServiceResponse<>("2100", "User not found", null));
     }
+
+    @Override
+    public boolean existsById(UUID id) {
+        return userRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByPseudo(String pseudo) {
+        return userRepository.existsByPseudo(pseudo);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }
