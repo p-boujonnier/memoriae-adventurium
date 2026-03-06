@@ -1,10 +1,9 @@
 package fr.fae.project.memoriaeback.common.exceptions;
 
-import fr.fae.project.memoriaeback.account.user.application.common.ServiceResponse;
+import fr.fae.project.memoriaeback.common.ServiceResponse;
 import fr.fae.project.memoriaeback.common.exceptions.dtos.FieldValidationError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

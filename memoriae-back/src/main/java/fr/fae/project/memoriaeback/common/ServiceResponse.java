@@ -1,4 +1,4 @@
-package fr.fae.project.memoriaeback.account.user.application.common;
+package fr.fae.project.memoriaeback.common;
 
 import java.util.function.Function;
 

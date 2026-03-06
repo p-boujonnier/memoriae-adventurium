@@ -4,7 +4,7 @@ import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserCreateRequ
 import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserUpdateRequest;
 import fr.fae.project.memoriaeback.account.user.api.dtos.responses.UserPublicResponse;
 import fr.fae.project.memoriaeback.account.user.api.mappers.UserMapper;
-import fr.fae.project.memoriaeback.account.user.application.common.ServiceResponse;
+import fr.fae.project.memoriaeback.common.ServiceResponse;
 import fr.fae.project.memoriaeback.account.user.application.services.IUserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
