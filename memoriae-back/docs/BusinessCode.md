@@ -49,7 +49,7 @@
 | 2003 | User deleted successfully   | The user requests account deletion, they are removed from the database                     |
 | 2100 | User not found              | A `GET /users/{id}` is made but no user with that id exists                                |
 | 2101 | Email already in use        | At registration, the provided email is already associated with an existing account         |
-| 2102 | Username already taken      | At registration or update, the chosen username is already taken by another user            |
+| 2102 | Pseudo already taken        | At registration or update, the chosen username is already taken by another user            |
 | 2103 | Deletion not possible       | Account deletion is blocked because it still has linked characters or notes                |
 | 2200 | Validation errors           | An error had been detected during validation of resquest body                              |
 | 2300 | Action not authorized       | A non-admin user attempts to access another user's profile                                 |

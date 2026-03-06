@@ -22,25 +22,28 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServiceResponse<User> findById(UUID id) {
-        if (id == null) {
-            return new ServiceResponse<>("2100","User not found",null);
-        }
-        return new ServiceResponse<>("2001","User retrieved successfully",userRepository.findById(id).get());
+        return userRepository.findById(id)
+                .map(user -> new ServiceResponse<>("2001", "User retrieved successfully", user))
+                .orElse(new ServiceResponse<>("2100", "User not found with id : " + id, null));
     }
 
     @Override
     public ServiceResponse<User> findByPseudo(String pseudo) {
-        return null;
+        return userRepository.findByPseudo(pseudo)
+                .map(user -> new ServiceResponse<>("2001", "User retrieved successfully", user))
+                .orElse(new ServiceResponse<>("2100", "User not found with pseudo : " + pseudo, null));
     }
 
     @Override
     public ServiceResponse<User> findByEmail(String email) {
-        return null;
+        return userRepository.findByEmail(email)
+                .map(user -> new ServiceResponse<>("2001", "User retrieved successfully", user))
+                .orElse(new ServiceResponse<>("2100", "User not found with email : " + email, null));
     }
 
     @Override
     public ServiceResponse<List<User>> findAll() {
-        return new ServiceResponse<>("2001","Users retrieved successfully",userRepository.findAll());
+        return new ServiceResponse<>("2001", "Users retrieved successfully", userRepository.findAll());
     }
 
     @Override
@@ -59,10 +62,10 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public ServiceResponse<User> update(User user) {
-        if (userRepository.existsByPseudo(user.getPseudo())) {
+        if (userRepository.existsByPseudoAndIdNot(user.getPseudo(), user.getId())) {
             return new ServiceResponse<>("2102", "Pseudo already taken", null);
         }
-        if (userRepository.existsByEmail(user.getEmail())) {
+        if (userRepository.existsByEmailAndIdNot(user.getEmail(), user.getId())) {
             return new ServiceResponse<>("2101", "Email already in use", null);
         }
         return userRepository.findById(user.getId())
@@ -91,5 +94,15 @@ public class UserServiceImpl implements IUserService {
     @Override
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean existsByPseudoAndIdNot(String pseudo, UUID id) {
+        return userRepository.existsByPseudoAndIdNot(pseudo, id);
+    }
+
+    @Override
+    public boolean existsByEmailAndIdNot(String email, UUID id) {
+        return userRepository.existsByEmailAndIdNot(email, id);
     }
 }

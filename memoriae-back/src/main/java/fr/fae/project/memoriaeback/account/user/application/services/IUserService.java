@@ -10,13 +10,16 @@ public interface IUserService {
 
     // CRUD
     ServiceResponse<User> findById(UUID id);
+    ServiceResponse<User> findByPseudo(String pseudo);
+    ServiceResponse<User> findByEmail(String email);
     ServiceResponse<List<User>> findAll();
     ServiceResponse<User> create(User user);
     ServiceResponse<User> update(User user);
     ServiceResponse<Void> delete(UUID id);
 
     // Utils
-    boolean existsById(UUID id);
     boolean existsByPseudo(String pseudo);
     boolean existsByEmail(String email);
+    boolean existsByPseudoAndIdNot(String pseudo, UUID id);
+    boolean existsByEmailAndIdNot(String email, UUID id);
 }

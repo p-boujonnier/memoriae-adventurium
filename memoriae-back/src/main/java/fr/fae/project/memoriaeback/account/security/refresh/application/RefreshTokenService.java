@@ -12,21 +12,20 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.Base64;
 import java.util.HexFormat;
 import java.util.Optional;
 
 @Service
-public class RefeshTokenService implements IRefreshTokenService {
+public class RefreshTokenService implements IRefreshTokenService {
 
     private final IRefreshTokenRepository refreshTokenRepository;
     @Value("${jwt.refresh-token.expiration}")
     private long refreshTokenExpiration;
     private final SecureRandom random = new SecureRandom();
 
-    public RefeshTokenService(IRefreshTokenRepository refreshTokenRepository) {
+    public RefreshTokenService(IRefreshTokenRepository refreshTokenRepository) {
         this.refreshTokenRepository = refreshTokenRepository;
     }
 
@@ -88,7 +87,7 @@ public class RefeshTokenService implements IRefreshTokenService {
             return new ServiceResponse<>("1107","Refresh token expired",null);
         }
 
-        if (!oldRt.getDevice().equals(device)){
+        if (oldRt.getDevice() != null && !oldRt.getDevice().equals(device)) {
             refreshTokenRepository.revokeAllByUser(oldRt.getUser());
             return new ServiceResponse<>("1106","Invalid refresh token",null);
         }

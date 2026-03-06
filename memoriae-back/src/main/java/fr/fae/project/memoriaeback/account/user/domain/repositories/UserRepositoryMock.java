@@ -56,7 +56,6 @@ public class UserRepositoryMock implements IUserRepository {
     }
 
     // Utility methods
-    @Override
     public boolean existsById(UUID id) {
         return users.stream().anyMatch(user -> user.getId().equals(id));
     }
@@ -68,4 +67,11 @@ public class UserRepositoryMock implements IUserRepository {
     public boolean existsByEmail(String email) {
         return users.stream().anyMatch(user -> user.getEmail().equals(email));
     }
-}
+    @Override
+    public boolean existsByPseudoAndIdNot(String pseudo, UUID id) {
+        return users.stream().anyMatch(u -> u.getPseudo().equals(pseudo) && !u.getId().equals(id));
+    }
+    @Override
+    public boolean existsByEmailAndIdNot(String email, UUID id) {
+        return users.stream().anyMatch(u -> u.getEmail().equals(email) && !u.getId().equals(id));
+    }}

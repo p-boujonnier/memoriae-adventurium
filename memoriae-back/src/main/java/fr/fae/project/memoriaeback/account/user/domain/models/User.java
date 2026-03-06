@@ -24,11 +24,15 @@ public class User {
     public User() {
     }
 
-    public User(UUID id, String pseudo, String email, String password) {
-        this.setId(id);
+    public User(String pseudo, String email, String password) {
         this.setPseudo(pseudo);
         this.setEmail(email);
         this.setPassword(password);
+    }
+
+    public User(UUID id, String pseudo, String email, String password) {
+        this(pseudo, email, password);
+        this.setId(id);
     }
 
     public void setId(UUID id) {

@@ -69,4 +69,8 @@ public class JwtService {
     public String getEmailFromToken(String token) {
         return extractClaims(token).get("email", String.class);
     }
+
+    public long getAccessTokenExpiration() {
+        return accessTokenExpiration;
+    }
 }

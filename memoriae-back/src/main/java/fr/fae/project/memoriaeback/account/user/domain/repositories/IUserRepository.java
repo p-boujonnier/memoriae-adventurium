@@ -17,7 +17,8 @@ public interface IUserRepository {
     void deleteById(UUID id);
 
     // Utils
-    boolean existsById(UUID id);
     boolean existsByPseudo(String pseudo);
     boolean existsByEmail(String email);
+    boolean existsByPseudoAndIdNot(String pseudo, UUID id);
+    boolean existsByEmailAndIdNot(String email, UUID id);
 }
