@@ -1,5 +1,6 @@
-package fr.fae.project.memoriaeback.account.security.refresh;
+package fr.fae.project.memoriaeback.account.security.refresh.domain.repositories;
 
+import fr.fae.project.memoriaeback.account.security.refresh.domain.models.RefreshToken;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

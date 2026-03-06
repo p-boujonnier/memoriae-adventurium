@@ -1,4 +1,4 @@
-package fr.fae.project.memoriaeback.account.security.refresh;
+package fr.fae.project.memoriaeback.account.security.refresh.domain.models;
 
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import jakarta.persistence.*;
