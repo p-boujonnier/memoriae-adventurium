@@ -26,6 +26,16 @@ public class UserRepositoryJpaAdapter implements IUserRepository {
     }
 
     @Override
+    public Optional<User> findByPseudo(String pseudo) {
+        return userJpaRepository.findByPseudo(pseudo);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return userJpaRepository.findByEmail(email);
+    }
+
+    @Override
     public List<User> findAll() {
         return userJpaRepository.findAll();
     }

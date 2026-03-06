@@ -10,6 +10,10 @@ public interface IUserRepository {
 
     Optional<User> findById(UUID id);
 
+    Optional<User> findByPseudo(String pseudo);
+
+    Optional<User> findByEmail(String email);
+
     List<User> findAll();
 
     User save(User user);

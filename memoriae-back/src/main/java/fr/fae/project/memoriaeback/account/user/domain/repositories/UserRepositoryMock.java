@@ -33,6 +33,16 @@ public class UserRepositoryMock implements IUserRepository {
     }
 
     @Override
+    public Optional<User> findByPseudo(String pseudo) {
+        return users.stream().filter(u -> u.getPseudo().equals(pseudo)).findFirst();
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return users.stream().filter(u -> u.getEmail().equals(email)).findFirst();
+    }
+
+    @Override
     public User save(User user) {
         if (user.getId() != null && existsById(user.getId())) {
             users.replaceAll(u -> u.getId().equals(user.getId()) ? user : u);
