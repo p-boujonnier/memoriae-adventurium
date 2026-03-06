@@ -15,4 +15,7 @@ public interface IAuthService {
     ServiceResponse<Void> logout(String rawRefreshToken);
 
     ServiceResponse<AuthResponse> refresh(String rawRefreshToken, String device, String ipAddress, String userAgent);
+
+    ServiceResponse<AuthResponse> me(String userId);
+
 }

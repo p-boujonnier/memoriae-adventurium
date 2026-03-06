@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class AuthServiceImpl implements IAuthService {
 
@@ -140,5 +142,20 @@ public class AuthServiceImpl implements IAuthService {
 
         return new ServiceResponse<>("1002", "Token refreshed successfully",
                 new AuthResponse(accessToken, user.getId(), user.getPseudo(), accessTokenExpiration));
+    }
+
+    @Override
+    public ServiceResponse<AuthResponse> me(String userId) {
+        ServiceResponse<User> userResponse = userService.findById(UUID.fromString(userId));
+
+        if (userResponse.getData() == null) {
+            return new ServiceResponse<>("1101", "Account not found", null);
+        }
+
+        User user = userResponse.getData();
+
+        return new ServiceResponse<>("1000", "Authentication successful",
+                new AuthResponse(null, null, user.getId(), user.getPseudo(), 0)
+        );
     }
 }
