@@ -1,7 +1,9 @@
 package fr.fae.project.memoriaeback.account.security.refresh.domain.repositories;
 
 import fr.fae.project.memoriaeback.account.security.refresh.domain.models.RefreshToken;
+import fr.fae.project.memoriaeback.account.user.domain.models.User;
 
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 public interface IRefreshTokenRepository {
@@ -9,10 +11,10 @@ public interface IRefreshTokenRepository {
 
     Optional<RefreshToken> findByTokenHash(String tokenHash);
 
-    int revokeAllByUser(RefreshToken refreshToken);
+    boolean revokeAllByUser(User user);
 
-    int revokeByTokenHash(String tokenHash);
+    boolean revokeByTokenHash(String tokenHash);
 
-    void deleteAllByExpiredAtBefore(RefreshToken refreshToken);
+    void deleteAllByExpiredAtBefore(OffsetDateTime dateTime);
 }
 
