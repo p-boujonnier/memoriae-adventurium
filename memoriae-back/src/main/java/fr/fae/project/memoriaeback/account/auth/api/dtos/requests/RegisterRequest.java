@@ -1,4 +1,4 @@
-package fr.fae.project.memoriaeback.account.auth.api.dtos;
+package fr.fae.project.memoriaeback.account.auth.api.dtos.requests;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

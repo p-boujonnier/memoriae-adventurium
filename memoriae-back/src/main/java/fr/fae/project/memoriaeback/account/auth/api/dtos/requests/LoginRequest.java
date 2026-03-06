@@ -1,6 +1,5 @@
-package fr.fae.project.memoriaeback.account.auth.api.dtos;
+package fr.fae.project.memoriaeback.account.auth.api.dtos.requests;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
@@ -18,8 +17,7 @@ public class LoginRequest {
     private boolean rememberMe;
 
     // Constructors
-    public LoginRequest() {
-    }
+    public LoginRequest() {}
     public LoginRequest(String identifier, String password, boolean rememberMe) {
         this.setIdentifier(identifier);
         this.setPassword(password);
