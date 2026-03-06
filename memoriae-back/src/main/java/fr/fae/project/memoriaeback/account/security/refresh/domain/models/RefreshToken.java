@@ -55,6 +55,21 @@ public class RefreshToken {
     @Column(name = "updated_at")
     private OffsetDateTime updatedAt;
 
+    public RefreshToken() {
+    }
+
+    public RefreshToken(User user, String tokenHash, String device, String ipAddress, String userAgent, long timeoutDays) {
+        this.user = user;
+        this.tokenHash = tokenHash;
+        this.device = device;
+        this.ipAddress = ipAddress;
+        this.userAgent = userAgent;
+        this.issuedAt = OffsetDateTime.now();
+        this.lastUsedAt = OffsetDateTime.now();
+        this.expiresAt = OffsetDateTime.now().plusDays(timeoutDays);
+        this.revoked = false;
+    }
+
     @PrePersist
     protected void onCreate() {
         OffsetDateTime now = OffsetDateTime.now();
