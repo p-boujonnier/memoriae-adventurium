@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { AuthLoginRequestDto } from '../../models/dto/auth-login-request.dto';
+import { Router, RouterLink } from '@angular/router';
+import { AuthRegisterRequestDto } from '../../models/dto/auth-register-request.dto';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
   imports: [FormsModule, RouterLink],
-  templateUrl: './login.component.html',
+  templateUrl: './register.component.html',
 })
-export class LoginComponent {
+export class RegisterComponent {
 
-  dto : AuthLoginRequestDto = {
-    identifier : '',
-    password : '',
-    rememberMe : false
+  dto : AuthRegisterRequestDto = {
+    pseudo : '',
+    email : '',
+    password : ''
   }
 
   errorMessage : string |null = null;
@@ -24,7 +24,7 @@ export class LoginComponent {
 
   submit(): void {
     this.errorMessage = null;
-    this.authService.login(this.dto).subscribe({
+    this.authService.register(this.dto).subscribe({
       next: (response) => {
         if (response.data) {
           this.router.navigate(['/users']);
@@ -32,7 +32,7 @@ export class LoginComponent {
           this.errorMessage = response.message;
         }
       },
-      error: (err) => (this.errorMessage = err.message),
-    });
+      error: (err) => this.errorMessage = err.message
+    })
   }
 }
