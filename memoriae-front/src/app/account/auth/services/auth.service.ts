@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -65,7 +64,7 @@ export class AuthService {
         }
         return false;
       }),
-      catchError(() => of(false))
+      catchError(() => of(false)),
     );
   }
 

@@ -5,9 +5,11 @@ import { UserDetailComponent } from './account/user/components/user-detail/user-
 import { LoginComponent } from './account/auth/components/login/login.component';
 import { RegisterComponent } from './account/auth/components/register/register.component';
 import { authGuard } from './account/auth/guards/auth.guard';
+import { HomeComponent } from './common/components/home/home.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'users', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent},
   { path: 'users', component: UserListComponent, canActivate: [authGuard]},
   { path: 'users/new', component: UserFormComponent, canActivate: [authGuard]},
   { path: 'users/:id', component: UserDetailComponent, canActivate: [authGuard]},
