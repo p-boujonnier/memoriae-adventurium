@@ -56,19 +56,17 @@ public class AuthServiceImpl implements IAuthService {
         }
         User savedUser = created.getData();
         String accessToken = jwtService.generateAccessToken(savedUser.getId(), savedUser.getEmail());
-        ServiceResponse<String> refreshToken = refreshTokenService
-                .createAndPersistRefreshToken(savedUser, null, null, null);
         return new ServiceResponse<>("1000", "Register successful",
                 new AuthResponse(
                         accessToken,
-                        refreshToken.getData(),
+                        null,
                         savedUser.getId(),
                         savedUser.getPseudo(),
                         accessTokenExpiration));
     }
 
     /**
-     * Login a user and generate authentication tokens.
+     * Log in a user and generate authentication tokens.
      * @param request Login request containing credentials.
      * @param device Device information.
      * @param ipAddress IP address of the login attempt.
@@ -98,7 +96,7 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     /**
-     * Logout a user by invalidating their refresh token.
+     * Log out a user by invalidating their refresh token.
      * @param rawRefreshToken Raw refresh token to be invalidated.
      */
     @Override

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../../account/auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +8,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './navbar.component.html',
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+
+  constructor(private authService : AuthService) {}
+}
