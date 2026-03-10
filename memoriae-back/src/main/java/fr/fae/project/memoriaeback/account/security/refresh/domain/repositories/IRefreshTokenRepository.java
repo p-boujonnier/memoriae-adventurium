@@ -11,9 +11,9 @@ public interface IRefreshTokenRepository {
 
     Optional<RefreshToken> findByTokenHash(String tokenHash);
 
-    boolean revokeAllByUser(User user);
+    int revokeAllByUser(User user);
 
-    boolean revokeByTokenHash(String tokenHash);
+    int revokeByTokenHash(String tokenHash);
 
     void deleteAllByExpiresAtBefore(OffsetDateTime dateTime);
 }

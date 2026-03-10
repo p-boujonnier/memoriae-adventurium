@@ -29,12 +29,12 @@ public class RefreshTokenRepositoryJpaAdapter implements IRefreshTokenRepository
     }
 
     @Override
-    public boolean revokeAllByUser(User user) {
+    public int revokeAllByUser(User user) {
         return refreshTokenJpaRepository.revokeAllByUser(user);
     }
 
     @Override
-    public boolean revokeByTokenHash(String tokenHash) {
+    public int revokeByTokenHash(String tokenHash) {
         return refreshTokenJpaRepository.revokeByTokenHash(tokenHash);
     }
 

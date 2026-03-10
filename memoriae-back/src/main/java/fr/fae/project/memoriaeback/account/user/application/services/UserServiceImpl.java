@@ -1,5 +1,6 @@
 package fr.fae.project.memoriaeback.account.user.application.services;
 
+import fr.fae.project.memoriaeback.account.security.refresh.application.IRefreshTokenService;
 import fr.fae.project.memoriaeback.common.ServiceResponse;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import fr.fae.project.memoriaeback.account.user.domain.repositories.IUserRepository;
@@ -14,10 +15,12 @@ public class UserServiceImpl implements IUserService {
 
     private final IUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final IRefreshTokenService iRefreshTokenService;
 
-    public UserServiceImpl(IUserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(IUserRepository userRepository, PasswordEncoder passwordEncoder, IRefreshTokenService iRefreshTokenService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.iRefreshTokenService = iRefreshTokenService;
     }
 
     @Override
@@ -79,7 +82,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServiceResponse<Void> delete(UUID id) {
         return userRepository.findById(id)
-                .map(_ -> {
+                .map(user -> {
+                    iRefreshTokenService.revokeAllForUser(user);
                     userRepository.deleteById(id);
                     return new ServiceResponse<Void>("2003", "User deleted successfully", null);
                 })

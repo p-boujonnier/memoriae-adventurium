@@ -19,7 +19,10 @@ public class RefreshToken {
     private java.util.UUID id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_refresh_token_user"))
+    @JoinColumn(
+            name = "user_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_refresh_token_user"))
     private User user;
 
     @Column(name = "token_hash", nullable = false, length = 128, unique = true)

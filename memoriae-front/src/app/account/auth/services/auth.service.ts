@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ServiceResponse } from '../../../common/models/service-response.model';
@@ -13,7 +13,7 @@ import { AuthResponseDto } from '../models/dto/auth-response.dto';
 })
 export class AuthService {
   // Constants
-  private readonly API = `${environment.apiUrl}/api/auth`;
+  private readonly API = '/api/auth';
 
   // Injections
   private currentUserSubject = new BehaviorSubject<AuthResponseDto | null>(null);
@@ -54,6 +54,19 @@ export class AuthService {
           if (response.data) this.currentUserSubject.next(response.data);
         }),
       );
+  }
+
+  initAuth(): Observable<boolean> {
+    return this.refresh().pipe(
+      map((response) => {
+        if (response.data) {
+          this.currentUserSubject.next(response.data);
+          return true;
+        }
+        return false;
+      }),
+      catchError(() => of(false))
+    );
   }
 
   me(): Observable<ServiceResponse<AuthResponseDto>> {

@@ -32,26 +32,26 @@ public class RefreshTokenRepositoryMock implements IRefreshTokenRepository{
     }
 
     @Override
-    public boolean revokeAllByUser(User user) {
+    public int revokeAllByUser(User user) {
         List<RefreshToken> foundTokens = tokens
                 .stream()
                 .filter(rt -> rt.getUser().getId().equals(user.getId()) && !rt.isRevoked())
                 .toList();
         foundTokens.forEach(rt -> rt.setRevoked(true));
-        return !foundTokens.isEmpty();
+        return foundTokens.size();
     }
 
     @Override
-    public boolean revokeByTokenHash(String tokenHash) {
+    public int revokeByTokenHash(String tokenHash) {
         return tokens
                 .stream()
                 .filter(rt -> rt.getTokenHash().equals(tokenHash) && !rt.isRevoked())
                 .findFirst()
                 .map(rt -> {
                     rt.setRevoked(true);
-                    return true;
+                    return 1;
                 })
-                .orElse(false);
+                .orElse(0);
     }
 
     @Override

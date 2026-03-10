@@ -21,10 +21,10 @@ public interface RefreshTokenJpaRepository extends JpaRepository<RefreshToken, U
     @Transactional
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query("UPDATE RefreshToken r SET r.revoked = true WHERE r.user = :user AND r.revoked = false")
-    boolean revokeAllByUser(@Param("user") User user);
+    int revokeAllByUser(@Param("user") User user);
 
     @Transactional
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query("UPDATE RefreshToken r SET r.revoked = true WHERE r.tokenHash = :tokenHash AND r.revoked = false")
-    boolean revokeByTokenHash(@Param("tokenHash") String tokenHash);
+    int revokeByTokenHash(@Param("tokenHash") String tokenHash);
 }

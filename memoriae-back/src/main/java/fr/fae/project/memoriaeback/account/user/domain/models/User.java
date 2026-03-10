@@ -1,7 +1,10 @@
 package fr.fae.project.memoriaeback.account.user.domain.models;
 
+import fr.fae.project.memoriaeback.account.security.refresh.domain.models.RefreshToken;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +23,12 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.REMOVE,
+            orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<RefreshToken> refreshTokens = new ArrayList<>();
 
     public User() {
     }
