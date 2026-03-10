@@ -2,9 +2,21 @@
   Bienvenue
 </h2>
 <div class="max-w-lg mx-auto">
-  <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8">
+  <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8 flex flex-col items-center justify-center gap-4">
     <p class="text-center text-stone-mid font-medieval text-sm">
       Vous êtes sur le site Memoriae Adventurium
+    </p>
+    <button
+      (click)="onRegister()"
+      class="bg-blood hover:bg-blood-light text-parchment px-4 py-2 rounded border border-gold-dark transition-colors text-sm uppercase tracking-wide font-medieval">
+      + S'enregistrer +
+    </button>
+
+    <p class="text-center text-stone-mid font-medieval text-sm">
+      Déjà un compte ?
+      <a routerLink="/login" class="text-gold-dark hover:text-gold transition-colors">
+        Se connecter
+      </a>
     </p>
   </div>
 </div>

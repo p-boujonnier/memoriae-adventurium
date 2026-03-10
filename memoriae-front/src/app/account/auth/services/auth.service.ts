@@ -17,6 +17,8 @@ export class AuthService {
   // Injections
   private currentUserSubject = new BehaviorSubject<AuthResponseDto | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();
+  private initializedSubject = new BehaviorSubject<boolean>(false);
+  isInitialized$ = this.initializedSubject.asObservable();
 
   // Constuctor
   constructor(
@@ -56,15 +58,18 @@ export class AuthService {
   }
 
   initAuth(): Observable<boolean> {
-    return this.refresh().pipe(
+    return this.me().pipe(
       map((response) => {
         if (response.data) {
-          this.currentUserSubject.next(response.data);
+          if (!this.currentUserSubject.value?.accessToken) {
+            this.currentUserSubject.next(response.data);
+          }
           return true;
         }
         return false;
       }),
       catchError(() => of(false)),
+      tap(() => this.initializedSubject.next(true)),
     );
   }
 

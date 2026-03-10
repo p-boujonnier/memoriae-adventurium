@@ -1,8 +1,19 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { UserService } from '../../../account/user/services/user.service';
 
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [],
-  templateUrl: './home.component.html'})
-export class HomeComponent { }
+  imports: [RouterModule],
+  templateUrl: './home.component.html',
+})
+export class HomeComponent {
+  constructor(
+    private router: Router,
+  ) {}
+
+  onRegister(): void {
+    this.router.navigate(['/register']);
+  }
+}
