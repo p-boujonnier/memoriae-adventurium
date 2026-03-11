@@ -13,11 +13,21 @@
         </button>
         @if (dropdownOpen) {
           <div class="absolute right-0 mt-2 w-48 bg-stone-dark border border-gold-dark rounded shadow-lg z-10">
+
+            @if (true) {
+              <a routerLink="/users"
+                 (click)="dropdownOpen = false"
+                 class="block px-4 py-2 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid hover:text-gold transition-colors border-b border-gold/30">
+                ⚙ Dashboard
+              </a>
+            }
+
             <button
               (click)="authService.logout()"
               class="w-full text-left px-4 py-2 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid hover:text-blood transition-colors">
               Déconnexion
             </button>
+
           </div>
         }
       </div>
