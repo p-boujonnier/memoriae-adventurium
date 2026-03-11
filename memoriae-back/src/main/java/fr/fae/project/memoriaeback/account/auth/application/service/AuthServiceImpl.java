@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,7 @@ public class AuthServiceImpl implements IAuthService {
                         savedUser.getId(),
                         savedUser.getPseudo(),
                         accessTokenExpiration,
-                        savedUser.getRoles().stream().map(Role::name).collect(Collectors.toList())));
+                        mapRoles(savedUser)));
     }
 
     /**
@@ -96,7 +97,7 @@ public class AuthServiceImpl implements IAuthService {
                         user.getId(),
                         user.getPseudo(),
                         accessTokenExpiration,
-                        user.getRoles().stream().map(Role::name).collect(Collectors.toList())));
+                        mapRoles(user)));
     }
 
     /**
@@ -150,7 +151,7 @@ public class AuthServiceImpl implements IAuthService {
                         user.getId(),
                         user.getPseudo(),
                         accessTokenExpiration,
-                        user.getRoles().stream().map(Role::name).collect(Collectors.toList()))
+                        mapRoles(user))
         );
     }
 
@@ -173,5 +174,9 @@ public class AuthServiceImpl implements IAuthService {
                         0,
                         user.getRoles().stream().map(Role::name).collect(Collectors.toList()))
         );
+    }
+
+    private List<String> mapRoles(User user) {
+        return user.getRoles().stream().map(Role::name).collect(Collectors.toList());
     }
 }
