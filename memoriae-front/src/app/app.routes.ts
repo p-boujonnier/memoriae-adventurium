@@ -6,14 +6,24 @@ import { LoginComponent } from './account/auth/components/login/login.component'
 import { RegisterComponent } from './account/auth/components/register/register.component';
 import { authGuard } from './account/auth/guards/auth.guard';
 import { HomeComponent } from './common/components/home/home.component';
+import { ErrorComponent } from './common/components/error/error.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent},
-  { path: 'users', component: UserListComponent, canActivate: [authGuard]},
-  { path: 'users/new', component: UserFormComponent, canActivate: [authGuard]},
-  { path: 'users/:id', component: UserDetailComponent, canActivate: [authGuard]},
-  { path: 'users/:id/edit', component: UserFormComponent, canActivate: [authGuard]},
-  { path: 'login', component: LoginComponent},
+  { path: 'home', component: HomeComponent },
+  { path: 'users', component: UserListComponent, canActivate: [authGuard] },
+  { path: 'users/new', component: UserFormComponent, canActivate: [authGuard] },
+  { path: 'users/:id', component: UserDetailComponent, canActivate: [authGuard] },
+  { path: 'users/:id/edit', component: UserFormComponent, canActivate: [authGuard] },
+  { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: '**',
+    component: ErrorComponent,
+    data: {
+      code: 404,
+      title: 'Page introuvable',
+      message: "Le parchemin que vous cherchez n'existe pas",
+    },
+  },
 ];

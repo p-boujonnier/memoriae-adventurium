@@ -13,6 +13,7 @@ export class NavbarComponent {
   authService = inject(AuthService);
   currentUser$ = this.authService.currentUser$;
   dropdownOpen = false;
+  ROLE_USER = true;
 
   toggleDropdown(): void {
     this.dropdownOpen = !this.dropdownOpen;
