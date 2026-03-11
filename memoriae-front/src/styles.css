@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-desk {
+  background-image: url('../public/img/bg-desk.webp');
+  background-size: cover;
+  background-position: center top;
+}
