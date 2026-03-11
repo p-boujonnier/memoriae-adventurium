@@ -1,14 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../account/auth/services/auth.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
+  authService = inject(AuthService);
+  currentUser$ = this.authService.currentUser$;
+  dropdownOpen = false;
 
-  constructor(private authService : AuthService) {}
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    const target = event.target as HTMLElement;
+    if (!target.closest('#user-menu')) {
+      this.dropdownOpen = false;
+    }
+  }
 }

@@ -2,13 +2,31 @@
   <a routerLink="/home">
     <img src="img/logo.svg" alt="Memoriae Adventurium" class="h-12 invert" />
   </a>
-  <ul class="absolute right-6 flex gap-6">
-    <li>
-      <a routerLink="/users"
+  <div class="absolute right-6 flex items-center gap-6">
+    @if (currentUser$ | async; as user) {
+      <div id="user-menu" class="relative">
+        <button
+          (click)="toggleDropdown()"
+          class="flex items-center gap-2 hover:text-gold-light transition-colors font-medieval tracking-wide text-sm uppercase">
+          {{ user.pseudo }}
+          <span class="text-gold">▾</span>
+        </button>
+        @if (dropdownOpen) {
+          <div class="absolute right-0 mt-2 w-48 bg-stone-dark border border-gold-dark rounded shadow-lg z-10">
+            <button
+              (click)="authService.logout()"
+              class="w-full text-left px-4 py-2 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid hover:text-blood transition-colors">
+              Déconnexion
+            </button>
+          </div>
+        }
+      </div>
+    } @else {
+      <a routerLink="/login"
          routerLinkActive="text-gold"
          class="hover:text-gold-light transition-colors font-medieval tracking-wide text-sm uppercase">
-        Utilisateurs
+        Connexion
       </a>
-    </li>
-  </ul>
+    }
+  </div>
 </nav>

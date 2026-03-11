@@ -80,11 +80,17 @@ export class AuthService {
   }
 
   logout(): void {
-    this.http.post<void>(`${this.API}/logout}`, {}, { withCredentials: true });
+    this.http.post<void>(`${this.API}/logout`, {}, { withCredentials: true }).subscribe();
+    this.clearUser();
+    this.router.navigate(['/login']);
   }
 
   getAccessToken(): string | null {
     return this.currentUserSubject.value?.accessToken ?? null;
+  }
+
+  clearUser(): void {
+    this.currentUserSubject.next(null);
   }
 
   isLoggedIn(): boolean {
