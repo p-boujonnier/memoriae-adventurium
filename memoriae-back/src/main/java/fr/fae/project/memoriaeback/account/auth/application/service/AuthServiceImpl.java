@@ -8,12 +8,14 @@ import fr.fae.project.memoriaeback.account.security.refresh.application.IRefresh
 import fr.fae.project.memoriaeback.account.security.refresh.domain.models.RefreshToken;
 import fr.fae.project.memoriaeback.account.user.application.services.IUserService;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
+import fr.fae.project.memoriaeback.account.user.domain.models.enums.Role;
 import fr.fae.project.memoriaeback.common.ServiceResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthServiceImpl implements IAuthService {
@@ -62,7 +64,8 @@ public class AuthServiceImpl implements IAuthService {
                         null,
                         savedUser.getId(),
                         savedUser.getPseudo(),
-                        accessTokenExpiration));
+                        accessTokenExpiration,
+                        savedUser.getRoles().stream().map(Role::name).collect(Collectors.toList())));
     }
 
     /**
@@ -92,7 +95,8 @@ public class AuthServiceImpl implements IAuthService {
                         refreshToken.getData(),
                         user.getId(),
                         user.getPseudo(),
-                        accessTokenExpiration));
+                        accessTokenExpiration,
+                        user.getRoles().stream().map(Role::name).collect(Collectors.toList())));
     }
 
     /**
@@ -140,7 +144,13 @@ public class AuthServiceImpl implements IAuthService {
         String newRawToken = rotatedToken.getData();
 
         return new ServiceResponse<>("1002", "Token refreshed successfully",
-                new AuthResponse(accessToken, newRawToken, user.getId(), user.getPseudo(), accessTokenExpiration)
+                new AuthResponse(
+                        accessToken,
+                        newRawToken,
+                        user.getId(),
+                        user.getPseudo(),
+                        accessTokenExpiration,
+                        user.getRoles().stream().map(Role::name).collect(Collectors.toList()))
         );
     }
 
@@ -155,7 +165,13 @@ public class AuthServiceImpl implements IAuthService {
         User user = userResponse.getData();
 
         return new ServiceResponse<>("1000", "Authentication successful",
-                new AuthResponse(null, null, user.getId(), user.getPseudo(), 0)
+                new AuthResponse(
+                        null,
+                        null,
+                        user.getId(),
+                        user.getPseudo(),
+                        0,
+                        user.getRoles().stream().map(Role::name).collect(Collectors.toList()))
         );
     }
 }
