@@ -4,4 +4,5 @@ export interface AuthResponseDto {
   userId: string;
   pseudo: string;
   expiresIn: number;
+  roles: string[];
 }
