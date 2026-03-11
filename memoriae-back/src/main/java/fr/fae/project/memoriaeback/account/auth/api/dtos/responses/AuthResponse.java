@@ -1,5 +1,6 @@
 package fr.fae.project.memoriaeback.account.auth.api.dtos.responses;
 
+import java.util.List;
 import java.util.UUID;
 
 public class AuthResponse {
@@ -9,19 +10,21 @@ public class AuthResponse {
     private UUID userId;
     private String pseudo;
     private long expiresIn;
+    private List<String> roles;
 
     // Constructors with refreshToken (login)
-    public AuthResponse(String accessToken, String refreshToken, UUID userId, String pseudo, long expiresIn) {
+    public AuthResponse(String accessToken, String refreshToken, UUID userId, String pseudo, long expiresIn, List<String> roles) {
         this.setAccessToken(accessToken);
         this.setRefreshToken(refreshToken);
         this.setUserId(userId);
         this.setPseudo(pseudo);
         this.setExpiresIn(expiresIn);
+        this.setRoles(roles);
     }
 
     // Constructors without refreshToken (refresh)
-    public AuthResponse(String accessToken, UUID userId, String pseudo, long expiresIn) {
-        this(accessToken, null, userId, pseudo, expiresIn);
+    public AuthResponse(String accessToken, UUID userId, String pseudo, long expiresIn, List<String> roles) {
+        this(accessToken, null, userId, pseudo, expiresIn, roles);
     }
 
     // Getters & Setters
@@ -58,5 +61,12 @@ public class AuthResponse {
     }
     public void setExpiresIn(long expiresIn) {
         this.expiresIn = expiresIn;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }
