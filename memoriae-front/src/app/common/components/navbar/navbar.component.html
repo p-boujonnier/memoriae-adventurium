@@ -15,7 +15,7 @@
             @if (authService.hasRole('ADMIN')) {
               <a routerLink="/users"
                  (click)="dropdownOpen = false"
-                 class="flex items-center gap-2 px-4 py-2.5 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid hover:text-parchment transition-colors border-b border-gold/20">
+                 class="flex items-center gap-2 px-4 py-2.5 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid text-gold no-underline hover:text-parchment transition-colors border-b border-gold/20">
                 ⚙ Dashboard
               </a>
             }

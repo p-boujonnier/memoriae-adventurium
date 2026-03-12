@@ -17,5 +17,9 @@
 }
 
 h2 {
-  @apply text-4xl font-enchanted text-white tracking-widest;
+  @apply text-4xl font-enchanted text-white tracking-normal;
+}
+
+a {
+  @apply text-blood hover:text-blood-light transition-colors underline;
 }

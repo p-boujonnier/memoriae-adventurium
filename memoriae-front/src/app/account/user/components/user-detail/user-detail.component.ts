@@ -2,11 +2,12 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserResponse } from '../../models/dto/user-response.dto';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ButtonComponent } from '../../../../common/components/button/button.component';
 
 @Component({
   selector: 'app-user-detail',
   standalone: true,
-  imports: [],
+  imports: [ButtonComponent],
   templateUrl: './user-detail.component.html',
 })
 export class UserDetailComponent implements OnInit {

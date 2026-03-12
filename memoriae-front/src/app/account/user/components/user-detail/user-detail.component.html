@@ -1,27 +1,19 @@
 <div class="max-w-lg mx-auto">
+  <div class="mb-6">
+    <h2>{{ user?.pseudo }}</h2>
+  </div>
+
   @if (user) {
     <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8">
 
-      <h2 class="text-3xl font-medieval text-stone-dark uppercase tracking-widest mb-8 text-center">
-        {{ user.pseudo }}
-      </h2>
-
-      <div class="border-t border-gold-dark/30 py-4">
+      <div>
         <span class="block text-stone-mid font-medieval uppercase tracking-wide text-xs mb-1">Email</span>
         <span class="text-stone-dark font-medieval">{{ user.email }}</span>
       </div>
 
       <div class="flex gap-4 mt-8">
-        <button
-          (click)="onEdit()"
-          class="flex-1 bg-blood hover:bg-blood-light text-parchment py-2 rounded border border-gold-dark transition-colors font-medieval uppercase tracking-wide">
-          Modifier
-        </button>
-        <button
-          (click)="onBack()"
-          class="flex-1 bg-transparent hover:bg-gold-dark/10 text-stone-dark py-2 rounded border border-gold-dark transition-colors font-medieval uppercase tracking-wide">
-          Retour
-        </button>
+        <app-button variant="gold" (click)="onEdit()">Modifier</app-button>
+        <app-button variant="blood" (click)="onBack()">Retour</app-button>
       </div>
 
     </div>

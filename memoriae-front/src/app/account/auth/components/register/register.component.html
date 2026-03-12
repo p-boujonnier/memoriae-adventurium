@@ -1,57 +1,57 @@
-<h2 class="text-2xl font-medieval text-gold uppercase tracking-widest mb-8 text-center">
-  Connexion
-</h2>
 <div class="max-w-lg mx-auto">
-  <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8">
+  <div class="mb-6">
+    <h2>Inscription</h2>
+  </div>
+  <div class="max-w-lg mx-auto">
+    <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8">
 
-    <div class="mb-5">
-      <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
-        Pseudo
-      </label>
-      <input
-        type="text"
-        [(ngModel)]="dto.pseudo"
-        class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
-    </div>
-
-    <div class="mb-5">
-      <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
-        Email
-      </label>
-      <input
-        type="email"
-        [(ngModel)]="dto.email"
-        class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
-    </div>
-
-    <div class="mb-8">
-      <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
-        Mot de passe
-      </label>
-      <input
-        type="password"
-        [(ngModel)]="dto.password"
-        class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
-    </div>
-
-    @if (errorMessage) {
-      <div class="mb-4 px-4 py-3 rounded border border-blood bg-blood/10 text-blood font-medieval text-sm">
-        {{ errorMessage }}
+      <div class="mb-5">
+        <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
+          Pseudo
+        </label>
+        <input
+          type="text"
+          [(ngModel)]="dto.pseudo"
+          class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
       </div>
-    }
 
-    <button
-      (click)="submit()"
-      class="w-full bg-blood hover:bg-blood-light text-parchment py-2 rounded border border-gold-dark transition-colors font-medieval uppercase tracking-wide mb-4">
-      S'inscrire
-    </button>
+      <div class="mb-5">
+        <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
+          Email
+        </label>
+        <input
+          type="email"
+          [(ngModel)]="dto.email"
+          class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+      </div>
 
-    <p class="text-center text-stone-mid font-medieval text-sm">
-      Déjà un compte ?
-      <a routerLink="/login" class="text-gold-dark hover:text-gold transition-colors">
-        Se connecter
-      </a>
-    </p>
+      <div class="mb-8">
+        <label class="block text-stone-dark font-medieval uppercase tracking-wide text-sm mb-2">
+          Mot de passe
+        </label>
+        <input
+          type="password"
+          [(ngModel)]="dto.password"
+          class="w-full bg-parchment border-b-2 border-gold-dark focus:border-gold outline-none px-2 py-2 text-stone-dark font-medieval transition-colors" />
+      </div>
 
+      @if (errorMessage) {
+        <div class="mb-4 px-4 py-3 rounded border border-blood bg-blood/10 text-blood font-medieval text-sm">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <div class="flex justify-center mb-2">
+        <app-button variant="blood" (click)="submit()">+ S'inscrire +</app-button>
+      </div>
+
+      <p class="text-center text-stone-mid font-medieval text-sm">
+        Déjà un compte ?
+        <a routerLink="/login" class="text-gold-dark hover:text-gold transition-colors">
+          Se connecter
+        </a>
+      </p>
+
+    </div>
   </div>
 </div>

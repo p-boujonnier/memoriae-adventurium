@@ -1,20 +1,15 @@
-<h2 class="text-2xl font-medieval text-gold uppercase tracking-widest mb-8 text-center">
-  Bienvenue
-</h2>
 <div class="max-w-lg mx-auto">
+  <div class="mb-6">
+    <h2>Bienvenue</h2>
+  </div>
   <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8 flex flex-col items-center justify-center gap-4">
     <p class="text-center text-stone-mid font-medieval text-sm">
       Vous êtes sur le site Memoriae Adventurium
     </p>
-    <button
-      (click)="onRegister()"
-      class="bg-blood hover:bg-blood-light text-parchment px-4 py-2 rounded border border-gold-dark transition-colors text-sm uppercase tracking-wide font-medieval">
-      + S'enregistrer +
-    </button>
-
+    <app-button variant="blood" (click)="onRegister()">S'enregistrer</app-button>
     <p class="text-center text-stone-mid font-medieval text-sm">
       Déjà un compte ?
-      <a routerLink="/login" class="text-gold-dark hover:text-gold transition-colors">
+      <a routerLink="/login">
         Se connecter
       </a>
     </p>

@@ -3,24 +3,27 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthRegisterRequestDto } from '../../models/dto/auth-register-request.dto';
 import { AuthService } from '../../services/auth.service';
+import { ButtonComponent } from '../../../../common/components/button/button.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ButtonComponent],
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
+  dto: AuthRegisterRequestDto = {
+    pseudo: '',
+    email: '',
+    password: '',
+  };
 
-  dto : AuthRegisterRequestDto = {
-    pseudo : '',
-    email : '',
-    password : ''
-  }
+  errorMessage: string | null = null;
 
-  errorMessage : string |null = null;
-
-  constructor(private authService : AuthService, private router : Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   submit(): void {
     this.errorMessage = null;
@@ -32,7 +35,7 @@ export class RegisterComponent {
           this.errorMessage = response.message;
         }
       },
-      error: (err) => this.errorMessage = err.message
-    })
+      error: (err) => (this.errorMessage = err.message),
+    });
   }
 }

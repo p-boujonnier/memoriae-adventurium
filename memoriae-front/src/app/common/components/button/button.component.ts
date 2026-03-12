@@ -10,16 +10,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   `,
 })
 export class ButtonComponent {
-  @Input() variant: 'blood' | 'gold' = 'blood';
+  @Input() variant: 'gold' | 'forest' | 'blood' = 'blood';
   @Output() onClick = new EventEmitter<void>();
 
   get classes(): string {
     const base =
-      'flex items-center tracking-wide gap-2 transition-colors font-enchanted text-2xl border px-3 py-0.5 rounded shadow-md';
+      'text-parchment hover:text-white flex items-center tracking-wide gap-2 transition-colors font-enchanted text-2xl border px-3 py-0.5 rounded shadow-md';
     const variants = {
-      blood:
-        'text-parchment/60 hover:text-parchment bg-blood hover:bg-blood-light border-stone-dark hover:border-blood',
-      gold: 'text-parchment/60 hover:text-parchment bg-gold-dark hover:bg-gold border-stone-dark hover:border-gold-dark',
+      gold: 'bg-gold-dark hover:bg-gold border-stone-dark hover:border-gold-dark',
+      blood: 'bg-blood hover:bg-blood-light border-stone-dark hover:border-blood',
+      forest: 'bg-forest hover:bg-forest-light border-stone-dark hover:border-forest',
     };
     return `${base} ${variants[this.variant]}`;
   }

@@ -1,7 +1,7 @@
 <div class="max-w-4xl mx-auto">
   <div class="flex items-center justify-between mb-6">
     <h2>Utilisateurs</h2>
-    <app-button variant="blood" (click)="onCreate()">
+    <app-button variant="forest" (click)="onCreate()">
       + Créer un utilisateur +
     </app-button>
   </div>
@@ -19,7 +19,7 @@
         @for (user of users; track user.id) {
           <tr class="hover:bg-gold-dark/10 transition-colors">
             <td class="px-6 py-4 font-medieval font-medium text-stone-dark">
-              <a [routerLink]="['/users', user.id]" class="hover:text-gold-dark transition-colors cursor-pointer">
+              <a [routerLink]="['/users', user.id]">
                 {{ user.pseudo }}
               </a>
             </td>

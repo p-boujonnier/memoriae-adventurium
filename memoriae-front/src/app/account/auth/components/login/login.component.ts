@@ -3,24 +3,27 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthLoginRequestDto } from '../../models/dto/auth-login-request.dto';
 import { AuthService } from '../../services/auth.service';
+import { ButtonComponent } from '../../../../common/components/button/button.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, ButtonComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
+  dto: AuthLoginRequestDto = {
+    identifier: '',
+    password: '',
+    rememberMe: false,
+  };
 
-  dto : AuthLoginRequestDto = {
-    identifier : '',
-    password : '',
-    rememberMe : false
-  }
+  errorMessage: string | null = null;
 
-  errorMessage : string |null = null;
-
-  constructor(private authService : AuthService, private router : Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   submit(): void {
     this.errorMessage = null;

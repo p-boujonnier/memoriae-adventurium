@@ -4,11 +4,12 @@ import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserCreateRequest } from '../../models/dto/user-create-request.dto';
 import { UserUpdateRequest } from '../../models/dto/user-update-request.dto';
+import { ButtonComponent } from '../../../../common/components/button/button.component';
 
 @Component({
   selector: 'app-user-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, ButtonComponent],
   templateUrl: './user-form.component.html',
 })
 export class UserFormComponent implements OnInit {
