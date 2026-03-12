@@ -1,4 +1,4 @@
-<nav class="bg-stone-dark border-b-2 border-gold text-parchment px-8 py-3 flex items-center justify-between">
+<nav class="bg-stone-dark/70 border-b border-gold text-parchment px-8 py-2 flex items-center justify-between">
 
   <a routerLink="/home" class="flex items-center gap-3">
     <img src="img/logo.svg" alt="Memoriae Adventurium" class="h-10 invert" />
@@ -7,23 +7,21 @@
   <div class="flex items-center gap-4">
     @if (currentUser$ | async; as user) {
       <div id="user-menu" class="relative">
-        <button
-          (click)="toggleDropdown()"
-          class="flex items-center gap-2 text-parchment hover:text-gold transition-colors font-medieval tracking-widest text-sm uppercase border border-gold/30 px-4 py-1.5 rounded hover:border-gold">
-          ⚔ {{ user.pseudo }} <span class="text-gold text-xs">▾</span>
-        </button>
+        <app-button variant="blood" (click)="toggleDropdown()">
+          {{ user.pseudo }} <span class="text-xs leading-none self-center">▾</span>
+        </app-button>
         @if (dropdownOpen) {
-          <div class="absolute right-0 mt-2 w-52 bg-stone-dark border border-gold/50 rounded shadow-2xl z-10">
+          <div class="absolute right-0 mt-4 w-52 bg-stone-dark border text-gold border-gold shadow-2xl z-10">
             @if (authService.hasRole('ADMIN')) {
               <a routerLink="/users"
                  (click)="dropdownOpen = false"
-                 class="flex items-center gap-2 px-4 py-2.5 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid hover:text-gold transition-colors border-b border-gold/20">
+                 class="flex items-center gap-2 px-4 py-2.5 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid hover:text-parchment transition-colors border-b border-gold/20">
                 ⚙ Dashboard
               </a>
             }
             <button
               (click)="authService.logout()"
-              class="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medieval uppercase tracking-wide hover:bg-stone-mid hover:text-blood transition-colors">
+              class="w-full flex items-center gap-2 px-4 py-2.5 text-sm font-medieval uppercase tracking-wide hover:bg-blood-dark/40 hover:text-blood-light transition-colors">
               ✕ Déconnexion
             </button>
           </div>

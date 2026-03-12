@@ -2,11 +2,12 @@ import { Component, HostListener, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../account/auth/services/auth.service';
 import { AsyncPipe } from '@angular/common';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, AsyncPipe],
+  imports: [RouterLink, RouterLinkActive, AsyncPipe, ButtonComponent],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {

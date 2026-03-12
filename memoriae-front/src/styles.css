@@ -8,3 +8,14 @@
   background-size: cover;
   background-position: center top;
 }
+
+@font-face {
+  font-family: 'EnchantedLand';
+  src: url('../public/fonts/Enchanted Land.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h2 {
+  @apply text-4xl font-enchanted text-white tracking-widest;
+}

@@ -4,10 +4,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        parchment: '#f5e6c8',
-        'stone-dark': '#1a1410',
-        'stone-mid': '#2c2218',
+        parchment: '#e6dcc8',
         'stone-light': '#3d3025',
+        'stone-mid': '#2c2218',
+        'stone-dark': '#1a1410',
         gold: {
           light: '#d4a843',
           DEFAULT: '#b8860b',
@@ -24,11 +24,9 @@ module.exports = {
           dark: '#1a3d28',
         },
       },
-      backgroundColor: {
-        page: '#1a3d28',
-      },
       fontFamily: {
-        medieval: ['Palatino Linotype', 'Georgia', 'serif'],
+        medieval: ['MedievalFont', 'serif'],
+        enchanted: ['EnchantedLand', 'serif'],
       },
     },
   },
