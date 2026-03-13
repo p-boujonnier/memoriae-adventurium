@@ -1,0 +1,38 @@
+<div class="max-w-4xl mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <h2>Personnages</h2>
+    <app-button variant="forest" (click)="onCreate()">
+      + Créer un personnage +
+    </app-button>
+  </div>
+
+  <div class="bg-parchment rounded border border-forest-dark shadow-md overflow-hidden">
+    <table class="w-full">
+      <thead class="font-medieval text-parchment text-xs tracking-wider uppercase bg-forest-dark border-b border-forest-dark">
+      <tr>
+        <th class="px-6 py-3 text-left">Pseudo</th>
+        <th class="px-6 py-3 text-right">Actions</th>
+      </tr>
+      </thead>
+      <tbody class="divide-y divide-gold-dark/20">
+        @for (personage of personages; track personage.id) {
+          <tr class="hover:bg-gold-dark/10 transition-colors">
+            <td class="px-6 py-4 font-medieval font-medium text-stone-dark">
+              <a>
+                {{ personage.firstName }} {{ personage.lastName}}
+              </a>
+            </td>
+            <td class="px-6 py-4 flex justify-end gap-2">
+              <app-button variant="gold" (click)="onEdit(personage.id)">
+                Modifier
+              </app-button>
+              <app-button variant="blood"(click)="onDelete(personage.id)">
+                + Supprimer +
+              </app-button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
