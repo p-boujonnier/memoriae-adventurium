@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-error',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './error.component.html',
 })
 export class ErrorComponent {
@@ -14,7 +14,10 @@ export class ErrorComponent {
   title: string = 'Page introuvable';
   message: string = "Le parchemin que vous cherchez n'existe pas";
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
     const data = this.route.snapshot.data;
     if (data['code']) {
       this.code = data['code'];
@@ -28,6 +31,6 @@ export class ErrorComponent {
   }
 
   home(): void {
-          this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
 }

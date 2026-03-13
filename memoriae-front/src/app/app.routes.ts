@@ -9,6 +9,7 @@ import { HomeComponent } from './common/components/home/home.component';
 import { ErrorComponent } from './common/components/error/error.component';
 import { PersonageListComponent } from './personage/components/personage-list/personage-list.component';
 import { PersonageDetailComponent } from './personage/components/personage-detail/personage-detail.component';
+import { PersonageFormComponent } from './personage/components/personage-form/personage-form.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,7 +19,9 @@ export const routes: Routes = [
   { path: 'users/:id', component: UserDetailComponent, canActivate: [authGuard] },
   { path: 'users/:id/edit', component: UserFormComponent, canActivate: [authGuard] },
   { path: 'personages', component: PersonageListComponent, canActivate: [authGuard] },
+  { path: 'personages/new', component: PersonageFormComponent, canActivate: [authGuard] },
   { path: 'personages/:id', component: PersonageDetailComponent, canActivate: [authGuard] },
+  { path: 'personages/:id/edit', component: PersonageDetailComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   {

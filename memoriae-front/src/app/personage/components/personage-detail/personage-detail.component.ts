@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [ButtonComponent, RouterLink],
+  imports: [ButtonComponent],
   selector: 'personage-detail',
   templateUrl: './personage-detail.component.html',
 })

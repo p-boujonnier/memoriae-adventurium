@@ -18,9 +18,13 @@ export class PersonageListComponent {
 
   constructor(private router: Router) {}
 
-  onCreate(): void {}
+  onCreate(): void {
+    this.router.navigate(['/personages/new']);
+  }
 
-  onEdit(id: string): void {}
+  onEdit(id: string): void {
+    this.router.navigate(['/personages', id, 'edit']);
+  }
 
   onDelete(id: string): void {}
 }
