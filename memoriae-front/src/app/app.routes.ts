@@ -1,29 +1,18 @@
 import { Routes } from '@angular/router';
-import { UserListComponent } from './account/user/components/user-list/user-list.component';
-import { UserFormComponent } from './account/user/components/user-form/user-form.component';
-import { UserDetailComponent } from './account/user/components/user-detail/user-detail.component';
+import { HomeComponent } from './common/components/home/home.component';
 import { LoginComponent } from './account/auth/components/login/login.component';
 import { RegisterComponent } from './account/auth/components/register/register.component';
-import { authGuard } from './account/auth/guards/auth.guard';
-import { HomeComponent } from './common/components/home/home.component';
 import { ErrorComponent } from './common/components/error/error.component';
-import { PersonageListComponent } from './personage/components/personage-list/personage-list.component';
-import { PersonageDetailComponent } from './personage/components/personage-detail/personage-detail.component';
-import { PersonageFormComponent } from './personage/components/personage-form/personage-form.component';
+import { userRoutes } from './account/user/user.routes';
+import { personageRoutes } from './personage/personage.routes';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'users', component: UserListComponent, canActivate: [authGuard] },
-  { path: 'users/new', component: UserFormComponent, canActivate: [authGuard] },
-  { path: 'users/:id', component: UserDetailComponent, canActivate: [authGuard] },
-  { path: 'users/:id/edit', component: UserFormComponent, canActivate: [authGuard] },
-  { path: 'personages', component: PersonageListComponent, canActivate: [authGuard] },
-  { path: 'personages/new', component: PersonageFormComponent, canActivate: [authGuard] },
-  { path: 'personages/:id', component: PersonageDetailComponent, canActivate: [authGuard] },
-  { path: 'personages/:id/edit', component: PersonageDetailComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  ...userRoutes,
+  ...personageRoutes,
   {
     path: '**',
     component: ErrorComponent,
