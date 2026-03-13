@@ -1,0 +1,25 @@
+<div class="max-w-lg mx-auto">
+  <div class="mb-6">
+    <h2>{{ personage?.firstName }} {{ personage?.lastName }}</h2>
+  </div>
+
+  @if (personage) {
+    <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8">
+
+      <div>
+        <span class="block text-stone-mid font-medieval uppercase tracking-wide text-xs mb-1">Identité</span>
+        <span class="text-stone-dark font-medieval">{{ personage.firstName }} {{ personage.lastName }}</span>
+      </div>
+
+      <div class="flex gap-4 mt-8">
+        <app-button variant="gold" (click)="onEdit()">Modifier</app-button>
+        <app-button variant="blood" (click)="onBack()">Retour</app-button>
+      </div>
+
+    </div>
+  } @else {
+    <div class="bg-parchment rounded border border-gold-dark shadow-lg p-8 text-center">
+      <p class="text-stone-mid font-medieval">Chargement...</p>
+    </div>
+  }
+</div>

@@ -18,7 +18,7 @@
         @for (personage of personages; track personage.id) {
           <tr class="hover:bg-gold-dark/10 transition-colors">
             <td class="px-6 py-4 font-medieval font-medium text-stone-dark">
-              <a>
+              <a [routerLink]="['/personages', personage.id]">
                 {{ personage.firstName }} {{ personage.lastName}}
               </a>
             </td>

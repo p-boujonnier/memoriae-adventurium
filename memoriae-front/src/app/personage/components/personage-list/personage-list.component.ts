@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { Personage } from '../models/personage.model';
-import { ButtonComponent } from '../../common/components/button/button.component';
-import { Router } from '@angular/router';
+import { Personage } from '../../models/personage.model';
+import { ButtonComponent } from '../../../common/components/button/button.component';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [ButtonComponent],
+  imports: [ButtonComponent, RouterLink],
   selector: 'personage-list',
   templateUrl: './personage-list.component.html',
 })
@@ -17,7 +17,6 @@ export class PersonageListComponent {
   ];
 
   constructor(private router: Router) {}
-
 
   onCreate(): void {}
 
