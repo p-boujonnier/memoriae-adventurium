@@ -2,8 +2,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserCreateRequest } from '../../models/dto/user-create-request.dto';
-import { UserUpdateRequest } from '../../models/dto/user-update-request.dto';
+import { UserCreateRequest } from '../../models/dtos/user-create-request.dto';
+import { UserUpdateRequest } from '../../models/dtos/user-update-request.dto';
 import { ButtonComponent } from '../../../../common/components/button/button.component';
 
 @Component({
@@ -65,7 +65,6 @@ export class UserFormComponent implements OnInit {
       this.userService.create(this.createDTO).subscribe({
         next: () => this.router.navigate(['/users']),
         error: (err) => {
-          console.log(err.data);
           this.errorMessages = err.data ?? [];
           this.cdr.detectChanges();
         },

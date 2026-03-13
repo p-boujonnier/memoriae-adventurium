@@ -1,8 +1,8 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ButtonComponent } from '../../../../common/components/button/button.component';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { UserResponse } from '../../models/dto/user-response.dto';
-import { ButtonComponent } from '../../../../common/components/button/button.component';
+import { UserResponse } from '../../models/dtos/user-response.dto';
 
 @Component({
   selector: 'app-user-list',
@@ -38,6 +38,7 @@ export class UserListComponent implements OnInit {
     this.userService.delete(id).subscribe(() => {
       this.users = this.users.filter((user) => user.id !== id);
       this.cdr.detectChanges();
+      this.router.navigate(['/users']);
     });
   }
 }

@@ -1,24 +1,36 @@
-import { Component } from '@angular/core';
-import { Personage } from '../../models/personage.model';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ButtonComponent } from '../../../common/components/button/button.component';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { PersonageResponse } from '../../models/dtos/personage-response.dto';
+import { PersonageService } from '../../services/personage.service';
 
 @Component({
+  selector: 'personage-detail',
   standalone: true,
   imports: [ButtonComponent],
-  selector: 'personage-detail',
   templateUrl: './personage-detail.component.html',
 })
-export class PersonageDetailComponent {
-  personage: Personage = {
-    id: '123',
-    firstName: 'Saria',
-    lastName: 'Floraison des Cendres',
-  };
+export class PersonageDetailComponent implements OnInit {
+  personage : PersonageResponse | null = null;
 
-  constructor(private router: Router) {}
+  constructor(
+    private personageService: PersonageService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cdr: ChangeDetectorRef,) {}
+
+  ngOnInit(): void {
+    const personageId = this.route.snapshot.paramMap.get('id');
+    if (personageId) {
+      this.personageService.findById(personageId).subscribe((data) => {
+        this.personage = data;
+        this.cdr.detectChanges();
+      });
+    }
+  }
 
   onEdit(): void {
+    this.router.navigate(['/personages', this.personage?.id, 'edit']);
   }
 
   onBack(): void {

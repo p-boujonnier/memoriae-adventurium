@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ServiceResponse } from '../../../common/models/service-response.model';
-import { UserResponse } from '../models/dto/user-response.dto';
+import { UserResponse } from '../models/dtos/user-response.dto';
 import { map, Observable } from 'rxjs';
-import { UserCreateRequest } from '../models/dto/user-create-request.dto';
-import { UserUpdateRequest } from '../models/dto/user-update-request.dto';
-import { environment } from '../../../../environments/environment';
+import { UserCreateRequest } from '../models/dtos/user-create-request.dto';
+import { UserUpdateRequest } from '../models/dtos/user-update-request.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +20,7 @@ export class UserService {
       .pipe(map((response) => response.data ?? []));
   }
 
-  findById(id: string) {
+  findById(id: string) : Observable<UserResponse | null> {
     return this.http
       .get<ServiceResponse<UserResponse>>(`${this.API}/${id}`)
       .pipe(map((response) => response.data));
