@@ -1,8 +1,8 @@
 package fr.fae.project.memoriaeback.account.user.api.controllers;
 
-import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserCreateRequest;
-import fr.fae.project.memoriaeback.account.user.api.dtos.requests.UserUpdateRequest;
-import fr.fae.project.memoriaeback.account.user.api.dtos.responses.UserPublicResponse;
+import fr.fae.project.memoriaeback.account.user.api.dto.requests.UserCreateRequest;
+import fr.fae.project.memoriaeback.account.user.api.dto.requests.UserUpdateRequest;
+import fr.fae.project.memoriaeback.account.user.api.dto.responses.UserPublicResponse;
 import fr.fae.project.memoriaeback.account.user.api.mappers.UserMapper;
 import fr.fae.project.memoriaeback.common.ServiceResponse;
 import fr.fae.project.memoriaeback.account.user.application.services.IUserService;

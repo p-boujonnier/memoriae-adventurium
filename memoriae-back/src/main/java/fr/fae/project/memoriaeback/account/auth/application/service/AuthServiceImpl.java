@@ -1,8 +1,8 @@
 package fr.fae.project.memoriaeback.account.auth.application.service;
 
-import fr.fae.project.memoriaeback.account.auth.api.dtos.requests.LoginRequest;
-import fr.fae.project.memoriaeback.account.auth.api.dtos.requests.RegisterRequest;
-import fr.fae.project.memoriaeback.account.auth.api.dtos.responses.AuthResponse;
+import fr.fae.project.memoriaeback.account.auth.api.dto.requests.LoginRequest;
+import fr.fae.project.memoriaeback.account.auth.api.dto.requests.RegisterRequest;
+import fr.fae.project.memoriaeback.account.auth.api.dto.responses.AuthResponse;
 import fr.fae.project.memoriaeback.account.security.jwt.JwtService;
 import fr.fae.project.memoriaeback.account.security.refresh.application.IRefreshTokenService;
 import fr.fae.project.memoriaeback.account.security.refresh.domain.models.RefreshToken;

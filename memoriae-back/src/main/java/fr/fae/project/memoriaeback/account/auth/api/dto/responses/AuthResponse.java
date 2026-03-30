@@ -1,4 +1,4 @@
-package fr.fae.project.memoriaeback.account.auth.api.dtos.responses;
+package fr.fae.project.memoriaeback.account.auth.api.dto.responses;
 
 import java.util.List;
 import java.util.UUID;

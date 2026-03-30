@@ -1,9 +1,8 @@
 package fr.fae.project.memoriaeback.account.auth.application.service;
 
-import fr.fae.project.memoriaeback.account.auth.api.dtos.requests.LoginRequest;
-import fr.fae.project.memoriaeback.account.auth.api.dtos.requests.RegisterRequest;
-import fr.fae.project.memoriaeback.account.auth.api.dtos.responses.AuthResponse;
-import fr.fae.project.memoriaeback.account.user.domain.models.User;
+import fr.fae.project.memoriaeback.account.auth.api.dto.requests.LoginRequest;
+import fr.fae.project.memoriaeback.account.auth.api.dto.requests.RegisterRequest;
+import fr.fae.project.memoriaeback.account.auth.api.dto.responses.AuthResponse;
 import fr.fae.project.memoriaeback.common.ServiceResponse;
 
 public interface IAuthService {

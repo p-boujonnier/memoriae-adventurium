@@ -1,8 +1,8 @@
 package fr.fae.project.memoriaeback.account.auth.api.controllers;
 
-import fr.fae.project.memoriaeback.account.auth.api.dtos.requests.LoginRequest;
-import fr.fae.project.memoriaeback.account.auth.api.dtos.requests.RegisterRequest;
-import fr.fae.project.memoriaeback.account.auth.api.dtos.responses.AuthResponse;
+import fr.fae.project.memoriaeback.account.auth.api.dto.requests.LoginRequest;
+import fr.fae.project.memoriaeback.account.auth.api.dto.requests.RegisterRequest;
+import fr.fae.project.memoriaeback.account.auth.api.dto.responses.AuthResponse;
 import fr.fae.project.memoriaeback.account.auth.application.service.IAuthService;
 import fr.fae.project.memoriaeback.common.ServiceResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;

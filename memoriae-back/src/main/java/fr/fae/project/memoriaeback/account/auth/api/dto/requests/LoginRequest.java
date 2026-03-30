@@ -1,4 +1,4 @@
-package fr.fae.project.memoriaeback.account.auth.api.dtos.requests;
+package fr.fae.project.memoriaeback.account.auth.api.dto.requests;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

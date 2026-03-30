@@ -1,4 +1,4 @@
-package fr.fae.project.memoriaeback.account.user.api.dtos.responses;
+package fr.fae.project.memoriaeback.account.user.api.dto.responses;
 
 import fr.fae.project.memoriaeback.account.user.domain.models.enums.Role;
 
