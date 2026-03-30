@@ -31,6 +31,10 @@ public class Personage {
         this.setLastName(lastName);
         this.setOwner(owner);
     }
+    public Personage(UUID id, String firstName, String lastName, User owner) {
+        this(firstName, lastName, owner);
+        this.setId(id);
+    }
 
     // Getters & Setters
     public UUID getId() {
