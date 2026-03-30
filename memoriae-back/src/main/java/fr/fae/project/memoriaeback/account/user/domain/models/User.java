@@ -43,14 +43,12 @@ public class User {
     public User() {
         this.setRoles();
     }
-
     public User(String pseudo, String email, String password) {
         this.setPseudo(pseudo);
         this.setEmail(email);
         this.setPassword(password);
         this.setRoles();
     }
-
     public User(UUID id, String pseudo, String email, String password) {
         this(pseudo, email, password);
         this.setId(id);
