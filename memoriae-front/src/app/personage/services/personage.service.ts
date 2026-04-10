@@ -28,23 +28,24 @@ export class PersonageService {
   findById(id: string): Observable<PersonageResponse | null> {
     return this.http
       .get<ServiceResponse<PersonageResponse>>(`${this.API}/${id}`)
-      .pipe(map((response) => response.data ?? null));
+      .pipe(map((response) => response.data));
   }
 
-  create(dto: PersonageCreateRequest): Observable<PersonageResponse> {
-    const created = { id: crypto.randomUUID(), ...dto };
-    this.mockData.push(created);
-    return of(created);
+  create(dto: PersonageCreateRequest): Observable<PersonageResponse | null> {
+    return this.http
+      .post<ServiceResponse<PersonageResponse>>(this.API, dto)
+      .pipe(map((response) => response.data));
   }
 
-  update(id: string, dto: PersonageUpdateRequest): Observable<PersonageResponse> {
-    const index = this.mockData.findIndex((p) => p.id === id);
-    this.mockData[index] = { ...this.mockData[index], ...dto };
-    return of(this.mockData[index]);
+  update(id: string, dto: PersonageUpdateRequest): Observable<PersonageResponse | null> {
+    return this.http
+      .put<ServiceResponse<PersonageResponse>>(`${this.API}/${id}`, dto)
+      .pipe(map((response) => response.data));
   }
 
-  delete(id: string): Observable<void> {
-    this.mockData = this.mockData.filter((p) => p.id !== id);
-    return of(void 0);
+  delete(id: string): Observable<void | null> {
+    return this.http
+      .delete<ServiceResponse<void>>(`${this.API}/${id}`)
+      .pipe(map((response) => response.data));
   }
 }
