@@ -15,6 +15,6 @@ public interface PersonageMapper {
     @Mapping(target = "owner", ignore = true)
     void toPersonageFromUpdate(PersonageUpdateRequest dto, @MappingTarget Personage personage);
 
-    PersonageResponse toResponse(Personage personage);
+    PersonageResponse toPersonageResponse(Personage personage);
 }
 
