@@ -21,10 +21,7 @@ public class UserRepositoryMock implements IUserRepository {
     ));
 
     // CRUD operations
-    @Override
-    public List<User> findAll() {
-        return users;
-    }
+
     @Override
     public Optional<User> findById(UUID id) {
         return users
@@ -40,6 +37,12 @@ public class UserRepositoryMock implements IUserRepository {
     public Optional<User> findByEmail(String email) {
         return users.stream().filter(u -> u.getEmail().equals(email)).findFirst();
     }
+
+    @Override
+    public List<User> findAll() {
+        return users;
+    }
+
     @Override
     public User save(User user) {
         if (user.getId() != null && existsById(user.getId())) {

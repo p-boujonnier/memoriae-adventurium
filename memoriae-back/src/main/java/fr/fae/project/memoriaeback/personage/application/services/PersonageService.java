@@ -3,6 +3,7 @@ package fr.fae.project.memoriaeback.personage.application.services;
 import fr.fae.project.memoriaeback.account.user.domain.models.User;
 import fr.fae.project.memoriaeback.common.ServiceResponse;
 import fr.fae.project.memoriaeback.personage.domain.models.Personage;
+import fr.fae.project.memoriaeback.personage.domain.repositories.IPersonageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,9 +12,12 @@ import java.util.UUID;
 
 @Service
 public class PersonageService implements IPersonageService {
+
+    private final IPersonageRepository personageRepository;
     private final List<Personage> personages;
 
-    public PersonageService(List<Personage> personages) {
+    public PersonageService(List<Personage> personages, IPersonageRepository personageRepository) {
+        this.personageRepository = personageRepository;
         this.personages = new ArrayList<>(List.of(
                 new Personage(UUID.fromString("a0000000-0000-0000-0000-000000000001"), "Frodon", "Sacquet", new User()),
                 new Personage(UUID.fromString("a0000000-0000-0000-0000-000000000002"), "Samsagace", "Gamegie", new User()),
@@ -38,21 +42,37 @@ public class PersonageService implements IPersonageService {
 
     @Override
     public ServiceResponse<List<Personage>> findAll() {
-        return new ServiceResponse<>("200", "List of personages retrieved successfully", personages);
+        return new ServiceResponse<>("200", "List of personages retrieved successfully", personageRepository.findAll());
     }
 
-    @Override
     public ServiceResponse<Personage> create(Personage personage) {
-        return null;
+        if (personages.stream().anyMatch(p -> p.getId().equals(personage.getId()))) {
+            return new ServiceResponse<>("400", "Personage already exists", null);
+        }
+        personage.setId(UUID.randomUUID());
+        personages.add(personage);
+        return new ServiceResponse<>("201", "Personage created successfully", personage);
     }
 
     @Override
     public ServiceResponse<Personage> update(Personage personage) {
-        return null;
+        int index = -1;
+        for (int i = 0; i < personages.size(); i++) {
+            if (personages.get(i).getId().equals(personage.getId())) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            return new ServiceResponse<>("404", "Personage not found", null);
+        }
+        personages.set(index, personage);
+        return new ServiceResponse<>("200", "Personage updated successfully", personage);
     }
 
     @Override
-    public ServiceResponse<Void> delete(UUID id) {
-        return null;
+    public ServiceResponse<Void> delete(UUID uuid) {
+        personages.removeIf(p -> p.getId().equals(uuid));
+        return new ServiceResponse<>("200", "Personage deleted successfully", null);
     }
 }

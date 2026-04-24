@@ -11,6 +11,7 @@ import org.mapstruct.MappingTarget;
 @Mapper(componentModel = "spring")
 public interface PersonageMapper {
     Personage toPersonageFromCreate(PersonageCreateRequest personageCreateRequest);
+
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "owner", ignore = true)
     void toPersonageFromUpdate(PersonageUpdateRequest dto, @MappingTarget Personage personage);

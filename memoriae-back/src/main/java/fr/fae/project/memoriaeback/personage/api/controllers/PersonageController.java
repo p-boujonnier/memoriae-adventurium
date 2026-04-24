@@ -35,7 +35,7 @@ public class PersonageController {
     @GetMapping("/{uuid}")
     public ResponseEntity<ServiceResponse<PersonageResponse>> getPersonageById(@PathVariable UUID uuid) {
         return ResponseEntity.ok(
-                IPersonageService.findById(uuid).map(mapper::toPersonageResponse)
+                personageService.findById(uuid).map(mapper::toPersonageResponse)
         );
     }
 
@@ -44,10 +44,9 @@ public class PersonageController {
     public ResponseEntity<ServiceResponse<PersonageResponse>> create(
             @Valid @RequestBody PersonageCreateRequest personageRequest
     ) {
-        Personage created = mapper.toPersonageFromCreate(personageRequest);
-        personages.add(created);
         return ResponseEntity.status(HttpStatus.CREATED).body(
-                new ServiceResponse<>("201", "Personage created successfully", mapper.toResponse(created))
+                personageService.create(mapper.toPersonageFromCreate(personageRequest))
+                        .map(mapper::toPersonageResponse)
         );
     }
 
@@ -57,28 +56,20 @@ public class PersonageController {
             @PathVariable UUID uuid,
             @Valid @RequestBody PersonageUpdateRequest personageRequest
     ) {
-        Personage existing = personages.stream()
-                .filter(p -> p.getId().equals(uuid))
-                .findFirst()
-                .orElse(null);
-
-        if (existing == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
-                    new ServiceResponse<>("404", "Personage not found", null));
+        ServiceResponse<Personage> existing = personageService.findById(uuid);
+        if (existing.getData() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ServiceResponse<>("404", existing.getMessage(), null));
         }
-
-        mapper.toPersonageFromUpdate(personageRequest, existing);
-        personages.replaceAll(p -> p.getId().equals(uuid) ? existing : p);
-
+        mapper.toPersonageFromUpdate(personageRequest, existing.getData());
         return ResponseEntity.ok(
-                new ServiceResponse<>("200", "Personage updated successfully", mapper.toResponse(existing))
+                personageService.update(existing.getData()).map(mapper::toPersonageResponse)
         );
     }
 
     @DeleteMapping("/{uuid}")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ServiceResponse<Void>> delete(@PathVariable UUID uuid) {
-        personages.removeIf(p -> p.getId().equals(uuid));
-        return ResponseEntity.ok(new ServiceResponse<>("200", "Personage deleted successfully", null));
+        return ResponseEntity.ok(personageService.delete(uuid));
     }
 }
