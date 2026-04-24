@@ -1,0 +1,19 @@
+name: Mirror to GitHub
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push mirror to GitHub
+        run: |
+          git remote add github https://p-boujonnier:${{ secrets.GITHUB_TOKEN }}@github.com/p-boujonnier/memoriae-adventurium.git
+          git push github --mirror
