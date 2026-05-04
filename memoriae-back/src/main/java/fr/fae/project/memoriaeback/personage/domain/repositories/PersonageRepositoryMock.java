@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Profile("mock")
 @Repository
 public class PersonageRepositoryMock implements IPersonageRepository {
 
@@ -30,19 +29,36 @@ public class PersonageRepositoryMock implements IPersonageRepository {
 
     @Override
     public Optional<Personage> findById(UUID uuid) {
-        return Optional.empty();
+        return  personages
+                .stream()
+                .filter(p -> p.getId().equals(uuid))
+                .findFirst();
     }
 
     @Override
-    public List<Personage> findAll() { return personages;}
+    public List<Personage> findAll() {
+        return personages;
+    }
 
     @Override
     public Personage save(Personage personage) {
-        return null;
+        if (personage.getId() != null && existsById(personage.getId())) {
+            personages.replaceAll(p -> p.getId().equals(personage.getId()) ? personage : p);
+            return personage;
+        }
+        personage.setId(UUID.randomUUID());
+        personages.add(personage);
+        return personage;
     }
 
     @Override
     public void deleteById(UUID uuid) {
+        personages.removeIf(personage -> personage.getId().equals(uuid));
+    }
 
+    // Utility methods
+    @Override
+    public boolean existsById(UUID uuid) {
+        return personages.stream().anyMatch(p -> p.getId().equals(uuid));
     }
 }

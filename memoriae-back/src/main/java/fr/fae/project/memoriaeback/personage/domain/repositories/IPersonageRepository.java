@@ -13,4 +13,7 @@ public interface IPersonageRepository {
     List<Personage> findAll();
     Personage save(Personage personage);
     void deleteById(UUID uuid);
+
+    // Utils
+    boolean existsById(UUID id);
 }

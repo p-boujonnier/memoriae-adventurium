@@ -23,10 +23,10 @@ public class UserRepositoryMock implements IUserRepository {
     // CRUD operations
 
     @Override
-    public Optional<User> findById(UUID id) {
+    public Optional<User> findById(UUID uuid) {
         return users
                 .stream()
-                .filter(u -> u.getId().equals(id))
+                .filter(u -> u.getId().equals(uuid))
                 .findFirst();
     }
     @Override
@@ -53,14 +53,15 @@ public class UserRepositoryMock implements IUserRepository {
         users.add(user);
         return user;
     }
+
     @Override
     public void deleteById(UUID id) {
         users.removeIf(user -> user.getId().equals(id));
     }
 
     // Utility methods
-    public boolean existsById(UUID id) {
-        return users.stream().anyMatch(user -> user.getId().equals(id));
+    public boolean existsById(UUID uuid) {
+        return users.stream().anyMatch(u -> u.getId().equals(uuid));
     }
     @Override
     public boolean existsByPseudo(String pseudo) {

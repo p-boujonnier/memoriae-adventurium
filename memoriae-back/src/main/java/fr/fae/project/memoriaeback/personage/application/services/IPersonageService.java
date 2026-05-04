@@ -14,4 +14,7 @@ public interface IPersonageService {
     ServiceResponse<Personage> create(Personage personage);
     ServiceResponse<Personage> update(Personage personage);
     ServiceResponse<Void> delete(UUID id);
+
+    // Utils
+    boolean existsById(UUID uuid);
 }

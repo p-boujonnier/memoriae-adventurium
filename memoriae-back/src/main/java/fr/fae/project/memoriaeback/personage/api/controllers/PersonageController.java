@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,16 +56,13 @@ public class PersonageController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ServiceResponse<PersonageResponse>> update(
             @PathVariable UUID uuid,
-            @Valid @RequestBody PersonageUpdateRequest personageRequest
+            @Valid @RequestBody PersonageUpdateRequest personageRequest,
+            Authentication authentication
     ) {
-        ServiceResponse<Personage> existing = personageService.findById(uuid);
-        if (existing.getData() == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new ServiceResponse<>("404", existing.getMessage(), null));
-        }
-        mapper.toPersonageFromUpdate(personageRequest, existing.getData());
+        if (personageService.existsById(uuid));
+        mapper.toPersonageFromUpdate(personageRequest, personageService.findById(uuid).getData());
         return ResponseEntity.ok(
-                personageService.update(existing.getData()).map(mapper::toPersonageResponse)
+                personageService.update(personageService.findById(uuid).getData()).map(mapper::toPersonageResponse)
         );
     }
 

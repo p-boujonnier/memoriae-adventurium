@@ -24,10 +24,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ServiceResponse<User> findById(UUID id) {
-        return userRepository.findById(id)
+    public ServiceResponse<User> findById(UUID uuid) {
+        return userRepository.findById(uuid)
                 .map(user -> new ServiceResponse<>("2001", "User retrieved successfully", user))
-                .orElse(new ServiceResponse<>("2100", "User not found with id : " + id, null));
+                .orElse(new ServiceResponse<>("2100", "User not found with id : " + uuid, null));
     }
 
     @Override
