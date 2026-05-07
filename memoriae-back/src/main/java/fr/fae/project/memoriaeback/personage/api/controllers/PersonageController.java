@@ -59,7 +59,7 @@ public class PersonageController {
             @Valid @RequestBody PersonageUpdateRequest personageRequest,
             Authentication authentication
     ) {
-        if (personageService.existsById(uuid));
+
         mapper.toPersonageFromUpdate(personageRequest, personageService.findById(uuid).getData());
         return ResponseEntity.ok(
                 personageService.update(personageService.findById(uuid).getData()).map(mapper::toPersonageResponse)

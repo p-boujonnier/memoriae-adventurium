@@ -22,11 +22,11 @@ export const authInterceptor: HttpInterceptorFn = (request, next) => {
               });
               return next(retryRequest);
             }
-            authService.logout();
+            authService.logoutLocal();
             return throwError(() => error);
           }),
           catchError(() => {
-            authService.logout();
+            authService.logoutLocal();
             return throwError(() => error);
           }),
         );
