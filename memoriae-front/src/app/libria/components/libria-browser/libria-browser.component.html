@@ -1,0 +1,47 @@
+<div class="max-w-6xl mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <h2>Dragon Magazine</h2>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4 mb-12">
+    @for (mag of dragons(); track mag.id) {
+      <a [routerLink]="['/libria/dragons', mag.id]"
+         class="bg-parchment rounded border border-forest-dark shadow-md overflow-hidden hover:shadow-lg hover:border-gold-dark transition-all cursor-pointer">
+        @if (mag.cover_url) {
+          <img [src]="mag.cover_url" [alt]="'Dragon #' + mag.issue" class="w-full object-cover" />
+        } @else {
+          <div class="w-full aspect-[3/4] bg-stone-mid/20 flex items-center justify-center">
+            <span class="text-stone-mid text-xs">No cover</span>
+          </div>
+        }
+        <div class="px-2 py-1 font-medieval text-xs text-stone-dark text-center">
+          #{{ mag.issue }}
+        </div>
+      </a>
+    }
+  </div>
+
+  <div class="flex items-center justify-between mb-6">
+    <h2>Dungeon Magazine</h2>
+  </div>
+
+  <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+    @for (mag of dungeons(); track mag.id) {
+      <a [routerLink]="['/libria/dungeons', mag.id]"
+         class="bg-parchment rounded border border-forest-dark shadow-md overflow-hidden hover:shadow-lg hover:border-gold-dark transition-all cursor-pointer">
+        @if (mag.cover_url) {
+          <img [src]="mag.cover_url"
+               [alt]="'Dungeon #' + mag.issue"
+               class="w-full object-cover" />
+        } @else {
+          <div class="w-full aspect-[3/4] bg-stone-mid/20 flex items-center justify-center">
+            <span class="text-stone-mid text-xs">No cover</span>
+          </div>
+        }
+        <div class="px-2 py-1 font-medieval text-xs text-stone-dark text-center">
+          #{{ mag.issue }}
+        </div>
+      </a>
+    }
+  </div>
+</div>
