@@ -1,7 +1,7 @@
-package fr.fae.project.memoriaeback.features.client;
+package fr.fae.project.memoriaeback.features.libria.client;
 
-import fr.fae.project.memoriaeback.features.dto.MagazineDetailDto;
-import fr.fae.project.memoriaeback.features.dto.MagazineListItemDto;
+import fr.fae.project.memoriaeback.features.libria.dto.MagazineDetailDto;
+import fr.fae.project.memoriaeback.features.libria.dto.MagazineListItemDto;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;

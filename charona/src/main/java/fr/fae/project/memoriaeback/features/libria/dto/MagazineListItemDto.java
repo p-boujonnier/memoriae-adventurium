@@ -1,5 +1,6 @@
-package fr.fae.project.memoriaeback.features.dto;
+package fr.fae.project.memoriaeback.features.libria.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import tools.jackson.databind.PropertyNamingStrategies;
 import tools.jackson.databind.annotation.JsonNaming;
 
@@ -7,5 +8,5 @@ import tools.jackson.databind.annotation.JsonNaming;
 public record MagazineListItemDto(
         Integer id,
         Integer issue,
-        String coverUrl
+        @JsonAlias("cover_url") String coverUrl
 ) {}

@@ -1,13 +1,13 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {LibriaService} from '../services/libria.service';
-import {MagazineListItem} from '../models/magazine.model';
+import {LibriaService} from '../../services/libria.service';
+import {MagazineListItem} from '../../models/magazine.model';
 import {RouterLink} from '@angular/router';
 
 @Component({
   selector:'app-libria-browser',
   standalone:true,
-  imports: [CommonModule, NgOptimizedImage, RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl:'./libria-browser.component.html',
 })
 export class LibriaBrowserComponent implements OnInit {

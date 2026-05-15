@@ -7,7 +7,7 @@ import { ButtonComponent } from '../button/button.component';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, AsyncPipe, ButtonComponent],
+  imports: [RouterLink, AsyncPipe, ButtonComponent],
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {

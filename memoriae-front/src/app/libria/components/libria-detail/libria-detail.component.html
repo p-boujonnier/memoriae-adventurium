@@ -1,0 +1,26 @@
+@if (detail(); as mag) {
+  <div class="max-w-4xl mx-auto">
+    <div class="flex items-center gap-4 mb-6">
+      @if (mag.cover_url) {
+        <img [src]="mag.cover_url" class="h-24 rounded shadow-md">
+      }
+      <div>
+        <h2 class="font-medieval text-stone-dark">{{ mag.magazine }} #{{ mag.issue }}</h2>
+        <p class="text-stone-mid text-sm">{{ mag.year }} | {{ mag.language }} | {{ mag.total_pages }} pages</p>
+      </div>
+    </div>
+
+    @if (mag.pdf_url) {
+      <div class="bg-parchment rounded border border-forest-dark shadow-md overflow-hidden">
+        <pdf-viewer
+          [src]="mag.pdf_url"
+          [render-text]="true"
+          [original-size]="false"
+          [show-all]="true"
+          style="width: 100%; height: 75vh; display: block;">
+        </pdf-viewer>
+      </div>
+    }
+
+  </div>
+}

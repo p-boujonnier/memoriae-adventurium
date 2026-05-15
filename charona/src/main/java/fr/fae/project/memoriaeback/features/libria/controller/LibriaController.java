@@ -1,11 +1,9 @@
-package fr.fae.project.memoriaeback.features.controller;
+package fr.fae.project.memoriaeback.features.libria.controller;
 
-import fr.fae.project.memoriaeback.features.client.LibriaClient;
-import fr.fae.project.memoriaeback.features.dto.MagazineDetailDto;
-import fr.fae.project.memoriaeback.features.dto.MagazineListItemDto;
-import jakarta.annotation.security.PermitAll;
+import fr.fae.project.memoriaeback.features.libria.client.LibriaClient;
+import fr.fae.project.memoriaeback.features.libria.dto.MagazineDetailDto;
+import fr.fae.project.memoriaeback.features.libria.dto.MagazineListItemDto;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

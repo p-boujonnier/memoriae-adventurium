@@ -24,7 +24,9 @@ public class PersonageController {
     private final IPersonageService personageService;
     private final PersonageMapper mapper;
 
-    public PersonageController(IPersonageService personageService, PersonageMapper mapper) {
+    public PersonageController(
+            IPersonageService personageService,
+            PersonageMapper mapper) {
         this.personageService = personageService;
         this.mapper = mapper;
     }
@@ -35,21 +37,19 @@ public class PersonageController {
     }
 
     @GetMapping("/{uuid}")
-    public ResponseEntity<ServiceResponse<PersonageResponse>> getPersonageById(@PathVariable UUID uuid) {
-        return ResponseEntity.ok(
-                personageService.findById(uuid).map(mapper::toPersonageResponse)
-        );
+    public ResponseEntity<ServiceResponse<PersonageResponse>> getPersonageById(
+            @PathVariable UUID uuid) {
+        return ResponseEntity.ok(personageService.findById(uuid).map(mapper::toPersonageResponse));
     }
 
     @PostMapping
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<ServiceResponse<PersonageResponse>> create(
-            @Valid @RequestBody PersonageCreateRequest personageRequest
-    ) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                personageService.create(mapper.toPersonageFromCreate(personageRequest))
-                        .map(mapper::toPersonageResponse)
-        );
+            @Valid @RequestBody PersonageCreateRequest personageRequest) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(personageService.create(mapper.toPersonageFromCreate(personageRequest))
+                        .map(mapper::toPersonageResponse));
     }
 
     @PutMapping("/{uuid}")
@@ -57,13 +57,13 @@ public class PersonageController {
     public ResponseEntity<ServiceResponse<PersonageResponse>> update(
             @PathVariable UUID uuid,
             @Valid @RequestBody PersonageUpdateRequest personageRequest,
-            Authentication authentication
-    ) {
-        if (personageService.existsById(uuid));
+            Authentication authentication) {
+        if (personageService.existsById(uuid)) ;
         mapper.toPersonageFromUpdate(personageRequest, personageService.findById(uuid).getData());
-        return ResponseEntity.ok(
-                personageService.update(personageService.findById(uuid).getData()).map(mapper::toPersonageResponse)
-        );
+        return ResponseEntity
+                .ok(personageService
+                        .update(personageService.findById(uuid).getData())
+                        .map(mapper::toPersonageResponse));
     }
 
     @DeleteMapping("/{uuid}")
