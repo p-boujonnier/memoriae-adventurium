@@ -89,10 +89,12 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<ServiceResponse<Void>> logout(
             @CookieValue(value = REFRESH_COOKIE_NAME, required = false) String rawToken,
-            HttpServletResponse response){
-        if (rawToken == null || rawToken.isBlank()) {
+            HttpServletResponse response) {
+
+        if (rawToken != null && !rawToken.isBlank()) {
             authService.logout(rawToken);
         }
+
         clearRefreshTokenCookie(response);
         return ResponseEntity.ok(new ServiceResponse<>("1001", "Logout successful", null));
     }

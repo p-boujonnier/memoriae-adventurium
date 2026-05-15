@@ -85,6 +85,11 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  logoutLocal(): void {
+    this.clearUser();
+    this.router.navigate(['/login']);
+  }
+
   getAccessToken(): string | null {
     return this.currentUserSubject.value?.accessToken ?? null;
   }
